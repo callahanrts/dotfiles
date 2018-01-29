@@ -1,1 +1,0 @@
-{"user":"codycallahan","dotfiles":"/Users/codycallahan/dotfiles","home":"/Users/codycallahan","run_list":["recipe[dotfiles::homebrew]","recipe[dotfiles::alacritty]","recipe[dotfiles::chunkwm]","recipe[dotfiles::khd]","recipe[dotfiles::tmux]","recipe[dotfiles::zsh]","recipe[vim::default]"],"backup_dir":"/Users/codycallahan/dotfiles_bak/1517205389"}
