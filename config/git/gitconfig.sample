@@ -1,0 +1,25 @@
+#
+# This is Git's per-user configuration file.
+#
+[core]
+	user = Cody
+	email = callahanrts@gmail.com
+	excludesfile = /Users/codycallahan/.config/git/gitignore
+  editor = "NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+[user]
+	name = Cody
+	email = callahanrts@gmail.com
+[merge]
+	tool = vimdiff
+[mergetool]
+	path = nvim
+[github]
+	user = USERNAME
+	password = PASSWORD
+	oauth-token = TOKEN
+[commit]
+	template = /Users/codycallahan/.config/git/commit_msg
+[init]
+	templatedir = /Users/codycallahan/.config/git/template
+[alias]
+	ctags = !.git/hooks/ctags

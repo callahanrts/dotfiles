@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+# ===============================================================================================
+# Misc. functions
+# ===============================================================================================
+
+function tunnlr() {
+  if [[ $1 ]]; then PORT=$1 else PORT=3001 fi
+  echo "codyss-t.tunnlr.com"
+  ssh  -nNt -g -R :12821:192.168.33.81:$PORT tunnlr3599@ssh1.tunnlr.com
+}
+
+function des_tunnlr() {
+  if [[ $1 ]]; then PORT=$1 else PORT=3002 fi
+  echo "codyssdesigner-t.tunnlr.com"
+  ssh  -nNt -g -R :13218:0.0.0.0:$PORT tunnlr4123@ssh1.tunnlr.com
+}
+
+function lscolors(){
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
+function work(){
+  # docker-machine start;
+  tmuxinator work || ta work
+}
+
+function rdokku(){
+  ssh -i ~/.ssh/dokku.pem ubuntu@ec2-54-68-79-109.us-west-2.compute.amazonaws.com
+}
+
+function notify() {
+  osascript -e 'display notification "'$1'" with title "'$2.'"'
+}
+
+function tensorstart() {
+  source ~/tensorflow/bin/activate
+}
+
+function tensorstop() {
+  deactivate
+}

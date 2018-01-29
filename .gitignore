@@ -1,0 +1,17 @@
+undodir
+
+.DS_Store
+
+secrets/*
+!secrets/*.sample.*
+
+mpd.conf
+gitconfig
+
+reports/config/*
+!reports/config/*.sample.*
+
+config.yml
+nodes
+
+cache

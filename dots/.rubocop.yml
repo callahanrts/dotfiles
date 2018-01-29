@@ -1,0 +1,15 @@
+
+# Default https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+
+Style/IfUnlessModifier:
+  MaxLineLength: 100
+
+Metrics/LineLength:
+  Max: 100
+
+Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact

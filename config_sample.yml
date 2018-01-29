@@ -1,0 +1,6 @@
+
+user: 'YOUR USERNAME'
+dotfiles: "LOCATION OF THIS REPO"
+home: "HOME"
+run_list:
+  - "recipe[vim::default]"

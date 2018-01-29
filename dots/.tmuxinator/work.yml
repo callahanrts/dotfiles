@@ -1,0 +1,75 @@
+
+name: work
+# root: ~/Documents/shortstack_apps
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+# pre: dm start default
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+pre_window: rbenv shell 2.4.1
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: dealkit
+
+windows:
+  - mysql:
+      root: ~/Documents/shortstack_apps/docker_mysql
+      panes:
+        - dcdev up
+
+  - dealkit:
+      root: ~/Documents/shortstack_apps/dealkit
+      panes:
+        - docker-sync start && sleep 6 && dcdev up
+
+  - shortstack:
+      root: ~/Documents/shortstack_apps/shortstack
+      panes:
+        - docker-sync start && sleep 6 && dcdev up
+
+  - server:
+      root: ~/Documents/shortstack_apps/shortstack-server
+      panes:
+        - docker-sync start && sleep 6 && dcdev up
+
+  - designer:
+      root: ~/Documents/shortstack_apps/shortstack-designer
+      panes:
+        - docker-sync start && sleep 9 && dcdev up
+
+  - style:
+      root: ~/Documents/shortstack_apps/shortstack-style
+      panes:
+        - rm tmp/unicorn.pid; docker-sync start && sleep 3 && dcdev up
+
+  - api:
+      root: ~/Documents/shortstack_apps/shortstack-api
+      panes:
+        - docker-sync start && sleep 2 && dcdev up
+
+  - asterisk:
+      root: ~/Documents/shortstack_apps/asterisk
+      panes:
+        - rm tmp/unicorn.pid; docker-sync start && sleep 2 && dcdev up
+
+  - emails:
+      root: ~/Documents/shortstack_apps/shortstack-emails
+      panes:
+        - rm tmp/unicorn.pid; docker-sync start && sleep 6 && dcdev up
+
+  - admin:
+      root: ~/Documents/shortstack_apps/
+      panes:
+        - docker-sync start && sleep 7 && dcdev up
+
