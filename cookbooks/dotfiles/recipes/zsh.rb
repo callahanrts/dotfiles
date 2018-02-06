@@ -39,3 +39,10 @@ end
 link "#{node[:home]}/.zsh" do
   to "#{node[:dotfiles]}/dots/.zsh"
 end
+
+
+# ZSH Syntax Highlighting
+git "#{node[:home]}/.oh-my-zsh/plugins/zsh-syntax-highlighting" do
+  repository "https://github.com/zsh-users/zsh-syntax-highlighting"
+  action :sync
+end
