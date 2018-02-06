@@ -156,7 +156,7 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_status_left=' #S '
-tmux_conf_theme_status_right='#{prefix}#{pairing} , %R , %d %b | #{username}#{root} '
+tmux_conf_theme_status_right='#{prefix}#{pairing} , %R , %d %b | callahanrts#{root} '
 
 # status left style
 tmux_conf_theme_status_left_fg='#21252c,#e4e4e4,#e4e4e4'  # black, white , white
