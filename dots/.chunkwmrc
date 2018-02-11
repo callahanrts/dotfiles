@@ -15,7 +15,7 @@ chunkc set global_desktop_mode           bsp
 
 # chunkc set 1_desktop_tree                ~/.chunkwm_layouts/dev_1
 
-chunkc set global_desktop_offset_top     15
+chunkc set global_desktop_offset_top     35
 chunkc set global_desktop_offset_bottom  15
 chunkc set global_desktop_offset_left    15
 chunkc set global_desktop_offset_right   15
@@ -50,5 +50,6 @@ chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state t
 chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner \"App Store\" --state float
 #chunkc tiling::rule --owner Emacs --state tile
+chunkc tiling::rule --owner alacritty --state tile
 chunkc tiling::rule --owner Emacs --except "^$" --state tile
 chunkc tiling::rule --owner Octave-gui --except "^$" --state tile

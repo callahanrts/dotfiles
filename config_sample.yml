@@ -3,4 +3,11 @@ user: 'YOUR USERNAME'
 dotfiles: "LOCATION OF THIS REPO"
 home: "HOME"
 run_list:
+  - "recipe[dotfiles::homebrew]"
+  - "recipe[dotfiles::alacritty]"
+  - "recipe[dotfiles::git]"
+  - "recipe[dotfiles::chunkwm]"
+  - "recipe[dotfiles::khd]"
+  - "recipe[dotfiles::tmux]"
+  - "recipe[dotfiles::zsh]"
   - "recipe[vim::default]"

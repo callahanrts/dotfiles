@@ -42,3 +42,8 @@ function tensorstart() {
 function tensorstop() {
   deactivate
 }
+
+function uberrefresh() {
+  kill -9 $(pgrep bersicht)
+  open -a $(ls /Applications | grep bersicht)
+}
