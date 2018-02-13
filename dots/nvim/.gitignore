@@ -1,0 +1,19 @@
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# Repo specific
+autoload
+undodir
+backup
+plugged
+shada
+vimwiki
+vimwiki_html
+
+# Mac Specific
+.DS_Store

@@ -3,8 +3,8 @@
 khd mode default on_enter chunkc border::color 0xFFC678DD # Default mode color
 
 # Vim insert mode bindings
-lctrl - w ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VirtualBox,Emacs] : khd -p "lalt - backspace"
-lctrl - h ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VirtualBox] : khd -p "0x33"
+lctrl - w ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "lalt - backspace"
+lctrl - h ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "0x33"
 lctrl - c [Emacs] : khd -p "0x35" # Escape
 lctrl - 0x29 : khd -p "0x24" # ctrl + ; = enter
 

@@ -11,4 +11,6 @@ style: """
   width: 100%
   background-color: #21252c
   z-index: -1
+  -webkit-box-shadow: 0 0 5px 0 #000;
+  box-shadow: 0 0 5px 0 #000;
 """

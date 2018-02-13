@@ -1,0 +1,17 @@
+use_xft yes
+xftfont Ubuntu-32
+xftalpha 0.1
+update_interval 0.5
+total_run_times 0
+own_window yes
+own_window_type panel
+alignment tl
+own_window_class conky
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 1920 45
+override_utf8_locale yes
+use_spacer yes
+
+TEXT

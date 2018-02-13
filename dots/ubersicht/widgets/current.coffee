@@ -9,6 +9,7 @@ render: (output) ->
       <li id="desktop2"><span class="fab fa-firefox"></span></li>
       <li id="desktop3"><span class="fab fa-slack-hash"></span></li>
       <li id="desktop4"><span class="fab fa-spotify"></span></li>
+      <li id="desktop5"><span class="far fa-calendar"></span></li>
     <ul>
   """
 
