@@ -6,6 +6,7 @@
 
 package "xorg-server"
 package "xorg-xinit"
+package "xorg-xrandr"
 
 link "#{node[:home]}/.xinitrc" do
   to "#{node[:dotfiles]}/dots/.xinitrc"
