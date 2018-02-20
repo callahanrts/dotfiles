@@ -225,7 +225,11 @@ exec --no-startup-id VBoxClient-all
 # Open Applications
 ##############################################
 # start a terminal
-bindsym $mod+Control+t exec gnome-terminal
+# bindsym $mod+Control+t exec gnome-terminal
+bindsym $mod+Control+t exec termite
 bindsym $mod+Control+s exec spotify --force-device-scale-factor=2
 bindsym $mod+Control+g exec google-chrome-stable --force-device-scale-factor=2
 
+
+# VMWare
+exec vmware-user --no-startup-id
