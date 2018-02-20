@@ -47,3 +47,8 @@ function uberrefresh() {
   kill -9 $(pgrep bersicht)
   open -a $(ls /Applications | grep bersicht)
 }
+
+function go-home() {
+  tk work
+  docker-restart
+}

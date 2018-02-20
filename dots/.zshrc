@@ -51,7 +51,7 @@ export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 # Go Path
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=/Users/codycallahan/Documents/libs/go_appengine:$PATH # AppEngine
+export PATH=/Users/codycallahan/go/go_appengine:$PATH # AppEngine
 
 # Rust Path
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -85,3 +85,9 @@ export PATH=/Users/codycallahan/Library//Python/3.6/bin:$PATH
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/codycallahan/go/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/codycallahan/go/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/codycallahan/go/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/codycallahan/go/google-cloud-sdk/completion.zsh.inc'; fi

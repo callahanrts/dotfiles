@@ -34,6 +34,9 @@ lcmd - m : khd -w "`date +%s`@user.com"
   ctrl - j [Google Chrome,Firefox,Firefox Developer Edition] : khd -p "cmd + alt - left" # tab
   ctrl - k [Google Chrome,Firefox,Firefox Developer Edition] : khd -p "cmd + alt - right" # tab
 
+  cmd - q [VirtualBox VM] : khd -p "option - q"
+  cmd - h [VirtualBox VM] : khd -p "option - h"
+
 # ===============================================================
 #
 # i3 Reference
@@ -46,10 +49,10 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # mod + return : open new terminal
 
   # mod + j : focus left
-  cmd - j : chunkc tiling::window -f west
+  cmd - j ![VirtualBox VM] : chunkc tiling::window -f west
 
   # mod + k : focus ~down~ right
-  cmd - k : chunkc tiling::window -f east # I prefer focus right
+  cmd - k ![VirtualBox VM] : chunkc tiling::window -f east # I prefer focus right
 
   # mod + l : focus up
   lcmd - l : chunkc tiling::window -f north
@@ -61,19 +64,19 @@ lcmd - m : khd -w "`date +%s`@user.com"
 
   # mod + space : toggle focus mode
   # mod + t : toggle layout
-  lcmd - t : chunkc tiling::desktop --rotate 90
+  lcmd - t ![VirtualBox VM] : chunkc tiling::desktop --rotate 90
 
   # ---------------------------------------------------------------
   # Moving Windows
   # ---------------------------------------------------------------
   # mod + shift + j : move window left
-  cmd + shift - j : chunkc tiling::window --warp west
+  cmd + shift - j ![VirtualBox VM] : chunkc tiling::window --warp west
 
   # mod + shift + k : move window down
-  cmd + shift - k : chunkc tiling::window --warp east # I prefer right
+  cmd + shift - k ![VirtualBox VM] : chunkc tiling::window --warp east # I prefer right
 
   # mod + shift + l : move window up
-  cmd + shift - l : chunkc tiling::window --warp south
+  cmd + shift - l ![VirtualBox VM] : chunkc tiling::window --warp south
 
   # mod + shift + ; : move window right
   cmd + shift - 0x29 : chunkc tiling::window --warp north # Semicolon
@@ -82,7 +85,7 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # Modifying Windows
   # ---------------------------------------------------------------
   # mod + f : toggle fullscreen
-  cmd - f : chunkc tiling::window --toggle fullscreen
+  cmd - f ![VirtualBox VM] : chunkc tiling::window --toggle fullscreen
   alt - f -> : khd -p "cmd - f"
 
   # mod + v : Split window vertically
@@ -115,10 +118,10 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # ---------------------------------------------------------------
 
   # mod + e : default
-  cmd - e : chunkc tiling::desktop --layout bsp
+  cmd - e ![VirtualBox VM] : chunkc tiling::desktop --layout bsp
 
   # mod + s : stacking
-  lcmd - s : chunkc tiling::desktop --layout monocle
+  lcmd - s ![VirtualBox VM] : chunkc tiling::desktop --layout monocle
   alt - s -> : khd -p "cmd - s"
 
   # mod + w : tabbed
@@ -134,16 +137,16 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # ---------------------------------------------------------------
   # mod + 0-9 : switch workspaces # Already configured using macOs System
   # mod + shift + 0-9 : move window to another workspace
-  cmd + shift - 1 : chunkc tiling::window --send-to-desktop 1
-  cmd + shift - 2 : chunkc tiling::window --send-to-desktop 2
-  cmd + shift - 3 : chunkc tiling::window --send-to-desktop 3
-  cmd + shift - 4 : chunkc tiling::window --send-to-desktop 4
-  cmd + shift - 5 : chunkc tiling::window --send-to-desktop 5
-  cmd + shift - 6 : chunkc tiling::window --send-to-desktop 6
-  cmd + shift - 7 : chunkc tiling::window --send-to-desktop 7
-  cmd + shift - 8 : chunkc tiling::window --send-to-desktop 8
-  cmd + shift - 9 : chunkc tiling::window --send-to-desktop 9
-  cmd + shift - 0 : chunkc tiling::window --send-to-desktop 10
+  cmd + shift - 1 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 1
+  cmd + shift - 2 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 2
+  cmd + shift - 3 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 3
+  cmd + shift - 4 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 4
+  cmd + shift - 5 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 5
+  cmd + shift - 6 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 6
+  cmd + shift - 7 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 7
+  cmd + shift - 8 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 8
+  cmd + shift - 9 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 9
+  cmd + shift - 0 ![VirtualBox VM] : chunkc tiling::window --send-to-desktop 10
 
   # ---------------------------------------------------------------
   # Opening Applications / Closing Windows
