@@ -7,7 +7,7 @@
 function tunnlr() {
   if [[ $1 ]]; then PORT=$1 else PORT=3001 fi
   echo "codyss-t.tunnlr.com"
-  ssh  -nNt -g -R :12821:192.168.33.81:$PORT tunnlr3599@ssh1.tunnlr.com
+  ssh  -nNt -g -R :12821:0.0.0.0:$PORT tunnlr3599@ssh1.tunnlr.com
 }
 
 function des_tunnlr() {
