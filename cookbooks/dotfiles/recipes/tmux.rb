@@ -10,6 +10,7 @@ bash 'install_tmux' do
 end
 
 
+directory "#{node[:dotfiles]}/cache"
 git "#{node[:dotfiles]}/cache/tmux" do
   repository "https://github.com/gpakosz/.tmux"
   enable_checkout false

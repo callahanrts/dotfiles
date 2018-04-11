@@ -5,7 +5,7 @@
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
 bash 'install_khd' do
-  code "brew install khd"
+  code "brew install koekeishiya/formulae/khd"
   not_if { !`brew ls --versions khd`.match('khd').nil? }
 end
 

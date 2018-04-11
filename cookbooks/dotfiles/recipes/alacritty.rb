@@ -7,6 +7,7 @@
 has_rust = !`which rustup`.match('rustup').nil?
 if has_rust
 
+  directory "#{node[:dotfiles]}/cache"
   git "#{node[:dotfiles]}/cache/alacritty" do
     repository "https://github.com/jwilm/alacritty"
     action :sync

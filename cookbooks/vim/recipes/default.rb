@@ -6,6 +6,11 @@
 
 config_dir = "#{node[:home]}/.config"
 
+bash "Install neovim" do
+  code "brew install neovim"
+  not_if { !`brew ls --versions neovim`.match('neovim').nil? }
+end
+
 git "#{config_dir}/nvim" do
   repository "https://github.com/callahanrts/vim-config"
   revision 'master'

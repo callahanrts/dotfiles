@@ -5,7 +5,10 @@
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
 bash 'install_chunkwm' do
-  code "brew install chunkwm"
+  code <<-EOF
+    brew tap crisidev/homebrew-chunkwm
+    brew install chunkwm
+  EOF
   not_if { !`brew ls --versions chunkwm`.match('chunkwm').nil? }
 end
 
