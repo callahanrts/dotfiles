@@ -1,5 +1,4 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator
-
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
@@ -140,6 +139,32 @@ colors:
     cyan:    '0x66cccc'
     white:   '0xdddddd'
 
+# Colors (One Half Light)
+# colors:
+#   primary:
+#     background: '0xfafafa'
+#     foreground: '0x383a42'
+
+#   normal:
+#     black: '0x383a42'
+#     red: '0xe45649'
+#     green: '0x50a14f'
+#     yellow: '0xc18401'
+#     blue: '0x0184bc'
+#     magenta: '0xa626a4'
+#     cyan: '0x0997b3'
+#     white: '0xfafafa'
+
+#   bright:
+#     black: '0x383a42'
+#     red: '0xe45649'
+#     green: '0x50a14f'
+#     yellow: '0xc18401'
+#     blue: '0x0184bc'
+#     magenta: '0xa626a4'
+#     cyan: '0x0997b3'
+#     white: '0xfafafa'
+
 
 # Visual Bell
 #
@@ -256,6 +281,7 @@ key_bindings:
   - { key: C,        mods: Command, action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
+  - { key: N,        mods: Command, command: { program: "open", args: ["-n", "/Applications/Alacritty.app"] } }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }

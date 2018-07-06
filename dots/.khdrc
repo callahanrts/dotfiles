@@ -3,10 +3,10 @@
 khd mode default on_enter chunkc border::color 0xFFC678DD # Default mode color
 
 # Vim insert mode bindings
-lctrl - w ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "lalt - backspace"
-lctrl - h ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "0x33"
-lctrl - c [Emacs] : khd -p "0x35" # Escape
-lctrl - 0x29 : khd -p "0x24" # ctrl + ; = enter
+ctrl - w ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "lalt - backspace"
+ctrl - h ![iTerm2,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "0x33"
+ctrl - c [Emacs] : khd -p "0x35" # Escape
+ctrl - 0x29 : khd -p "0x24" # ctrl + ; = enter
 
 # Generate Unique email
 lcmd - m : khd -w "`date +%s`@user.com"
@@ -56,8 +56,8 @@ lcmd - m : khd -w "`date +%s`@user.com"
 
   # mod + l : focus up
   lcmd - l : chunkc tiling::window -f north
-  lctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
-  lctrl - t ![iTerm2,Alacritty] -> : khd -p "cmd - t"
+  ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
+  ctrl - t ![iTerm2,Alacritty] -> : khd -p "cmd - t"
 
   # mod + ; : focus ~right~ down
   cmd - 0x29 : chunkc tiling::window -f south # Semicolon
@@ -100,7 +100,7 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # mod + r : Resize mode
   resize - escape : khd -e "mode activate default"
   lcmd - r : khd -e "mode activate resize"
-  lctrl - r -> ![Alacritty,iTerm2] : khd -p "cmd - r"
+  ctrl - r -> ![Alacritty,iTerm2] : khd -p "cmd - r"
 
   # Resize Mode
   khd mode resize prefix on

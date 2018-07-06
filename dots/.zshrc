@@ -35,6 +35,11 @@ alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
 # alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
+export PROJECTS=~/Documents/projects/github/callahanrts/
+function project() {
+  cd ~/Documents/projects/github/callahanrts/$1
+}
+
 # NVM Exports
 # -----------
 export NVM_DIR=~/.nvm
@@ -72,22 +77,8 @@ export PATH="/usr/local/sbin:$PATH"
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-# rbenv
-eval "$(rbenv init -)"
-
 # Python3 Bins
 export PATH=/Users/codycallahan/Library//Python/3.6/bin:$PATH
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/codycallahan/go/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/codycallahan/go/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/codycallahan/go/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/codycallahan/go/google-cloud-sdk/completion.zsh.inc'; fi
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
