@@ -39,6 +39,30 @@ lcmd - m : khd -w "`date +%s`@user.com"
 
 # ===============================================================
 #
+# Mouse Bindings
+#
+# ===============================================================
+
+  # LEFT
+  khd mod_trigger_timeout 0.2
+  - button4 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+              osascript -e 'tell application "System Events" to key code 123 using command down'
+  # rcmd : osascript -e 'tell application "System Events" to key code 55 using option down';\
+  #             osascript -e 'tell application "System Events" to key code 123 using command down'
+  0x60 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+              osascript -e 'tell application "System Events" to key code 123 using command down'
+  # RIGHT
+  - button3 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+              osascript -e 'tell application "System Events" to key code 124 using command down'
+
+  # ralt : osascript -e 'tell application "System Events" to key code 55 using option down';\
+  #             osascript -e 'tell application "System Events" to key code 124 using command down'
+  0x61 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+              osascript -e 'tell application "System Events" to key code 124 using command down'
+
+
+# ===============================================================
+#
 # i3 Reference
 #
 # ===============================================================
