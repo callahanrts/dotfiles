@@ -5,6 +5,7 @@ home: "HOME"
 run_list:
   - "recipe[dotfiles::homebrew]"
   - "recipe[dotfiles::alacritty]"
+  - "recipe[dotfiles::kitty]"
   - "recipe[dotfiles::git]"
   - "recipe[dotfiles::chunkwm]"
   - "recipe[dotfiles::khd]"
