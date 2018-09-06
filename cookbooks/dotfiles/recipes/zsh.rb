@@ -4,13 +4,14 @@
 #
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
-bash 'install_zsh' do
-  code <<-EOF
-    brew install zsh
-  EOF
-  not_if { !`brew ls --versions zsh`.match('zsh').nil? }
+execute 'install_zsh' do
+  cwd "#{node[:home]}"
+  user node[:user]
+  action :run
+  environment ({'HOME' => "#{node[:home]}", 'USER' => node[:user]})
+  command "brew install zsh"
+  not_if { !`su #{node[:user]} -l -c 'brew ls --versions zsh'`.match('zsh').nil? }
 end
-
 
 bash 'install_oh_my_zsh' do
   code <<-EOF

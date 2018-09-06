@@ -4,136 +4,118 @@
 # Docker functions
 # ===============================================================================================
 
-function dcstop-all() {
-  docker stop $(docker ps -a -q)
+ds() {
+  case $1 in
+  clean)
+    docker-sync-stack clean
+    ;;
+  start)
+    # Container ids
+    local api="shortstackapi_web_1"
+    local asterisk="asterisk_web_1"
+    local dealkit="dealkit_web_1"
+    local designer="shortstackdesigner_web_1"
+    local emails="shortstackemails_web_1"
+    local es="docker.elastic.co"
+    local mysql="dockermysql_db_1"
+    local server="shortstackserver_web_1"
+    local shortstack2="shortstack2_web_1"
+    local shortstack="shortstack_web_1"
+    local style="shortstackstyle_web_1"
+
+    local dir=${PWD##*/}
+    declare -a ssdeps=()
+
+    case $dir
+      shortstackadmin)
+        ssdeps=($designer $dealkit)
+        ;;
+      asterisk)
+         ssdeps=($mysql $es)
+         ;;
+       dealkit)
+         ssdeps=($server $shortstack $shortstack2)
+         ;;
+       shortstack)
+         ssdeps=($api $emails $style $asterisk)
+         ;;
+       shortstack2)
+         ssdeps=($api $emails $style $asterisk)
+         ;;
+       shortstackapi)
+         ssdeps=($mysql $es)
+         ;;
+       shortstackdesigner)
+         ssdeps=($server $shortstack $shortstack2)
+         ;;
+       shortstackemails)
+         ssdeps=($mysql $es)
+         ;;
+       shortstackserver)
+         ssdeps=($api $emails $style $asterisk)
+         ;;
+       shortstackstyle)
+         ssdeps=($mysql $es)
+         ;;
+
+    local all="yes"
+    for ssdep in $ssdeps[@]; do
+      # Set the all flag to no if there is a missing container
+      if [ -z "$(docker ps | grep "$ssdep")" ]; then
+        echo "$ssdep not running"
+        all="no"
+      fi
+    done
+
+    # If all dependent containers are running
+    if [ "$all" = "yes" ]; then
+      ds clean
+      if [ -f tmp/unicorn.pid ]; then
+        rm tmp/unicorn.pid
+        dcdev run web rm tmp/unicorn.pid
+      fi
+
+      docker-sync-stack start
+    else
+      sleep 1
+      echo ""
+      ds start
+    fi
+    ;;
+  stop)
+    docker-sync-stack stop
+    ;;
+  stopall)
+    docker stop $(docker ps -a -q)
+    # docker kill $(docker ps -q)
+    ;;
+  bash)
+    if [[ $1 =~ '^[0-9]+$' ]]; then
+      local CONTAINER=$(docker ps | grep $1)
+    else
+      local CONTAINER=$(docker-compose ps | grep foreman)
+    fi
+
+    if [[ $CONTAINER ]]; then
+      docker exec -it $(echo $CONTAINER | perl -lne 'print $& if /^[^\s]+/') bash
+    else
+      echo "Container not found"
+    fi
+    ;;
+  restart)
+    ds clean
+    ds start
+    ;;
+  esac
 }
 
-function dc-restart() {
-  dc stop && dc up
+db() {
+  case $1
+    backup)
+      dbmgr mysql backup shortstack_development --host 0.0.0.0 -P 3306 -p ~/Documents/shortstack_apps/db_backups
+      ;;
+    restore)
+      dbmgr mysql restore shortstack_development -P 3306 --host 0.0.0.0 -p ~/Documents/shortstack_apps/db_backups
+      ;;
+  esac
 }
-
-# Restart the docker app since they removed the button for it
-function docker-restart() {
-  osascript -e 'quit app "Docker"'
-  open -a Docker
-}
-
-function dcbash(){
-  if [[ $1 =~ '^[0-9]+$' ]]; then
-    CONTAINER=$(docker ps | grep $1)
-  else
-    CONTAINER=$(docker-compose ps | grep foreman)
-  fi
-
-  if [[ $CONTAINER ]]; then
-    docker exec -it $(echo $CONTAINER | perl -lne 'print $& if /^[^\s]+/') bash
-  else
-    echo "Container not found"
-  fi
-}
-
-export SS_DB_BACKUPS=/Users/codycallahan/Documents/shortstack_apps/db_backups/
-function dbbackup(){
-  dbmgr mysql backup shortstack_development --host 0.0.0.0 -P 3306 -p ~/Documents/shortstack_apps/db_backups
-}
-
-function dbrestore() {
-  dbmgr mysql restore shortstack_development -P 3306 --host 0.0.0.0 -p ~/Documents/shortstack_apps/db_backups
-}
-
-
-#
-# Back up and restore database
-#
-
-# function dbbackup(){
-#   if [[ $1 != "h" ]]; then
-#     echo "Backing up shortstack_development..."
-#     DATE=`date +%s`
-#     if [ -z $1 ]; then
-#       FILENAME="shortstack_development_$(echo $DATE).sql"
-#     else
-#       FILENAME=$1
-#     fi
-#     mysqldump -uroot -h 127.0.0.1 -P 3306 shortstack_development > $SS_DB_BACKUPS$FILENAME
-#     echo "Backup stored in $(echo $SS_DB_BACKUPS$FILENAME)"
-#   else
-#     echo "Usage: "
-#     echo "  # Restore db with timestamped name"
-#     echo "  dbbackup"
-#     echo ""
-#     echo "  # Restore db with custom name"
-#     echo "  dbbackup my-db-backup.sql"
-#   fi
-# }
-
-# function dbrestore(){
-#   if ! [ -z $1 ] && [[ $1 != "h" ]]; then
-#     echo "Recreate databases if they don't exist..."
-#     mysql -uroot -h 127.0.0.1 --port 3306 -e "create database shortstack_development;"
-#     mysql -uroot -h 127.0.0.1 --port 3306 -e "create database shortstack_test;"
-
-#     BACKUP=$SS_DB_BACKUPS
-#     if [[ $1 =~ '^[0-9]+$' ]]; then
-#       BACKUP="$(echo $BACKUP)shortstack_development_$(echo $1).sql"
-#     elif [[ $1 == "latest" ]]; then
-#       BACKUP="$(ls -t $(echo $SS_DB_BACKUPS)shortstack_development_*.sql | head -1)"
-#     else
-#       BACKUP=$BACKUP$1
-#     fi
-
-#     echo $BACKUP
-#     if [ -f $BACKUP ]; then
-#       mysql -uroot shortstack_development -h 127.0.0.1 --port 3306 < $BACKUP
-#     else
-#       echo "Restore failed: backup not found"
-#     fi
-
-#   else
-#     echo "Usage: "
-#     echo "  # Restore backup by timestamp"
-#     echo "  dbrestore 1463072909"
-#     echo ""
-#     echo "  # Restore most recent backup (by timestamp)"
-#     echo "  dbrestore latest"
-#     echo ""
-#     echo "  # Restore backup by name"
-#     echo "  dbrestore my_db_backup"
-#   fi
-# }
-
-
-# function dbdevrestore(){
-#   if ! [ -z $1 ] && [[ $1 != "h" ]]; then
-#     echo "Recreate databases if they don't exist..."
-#     mysql -uroot -h 0.0.0.0 --port 3306 -e "create database shortstack_development;"
-#     mysql -uroot -h 0.0.0.0 --port 3306 -e "create database shortstack_test;"
-
-#     BACKUP=$SS_DB_BACKUPS
-#     if [[ $1 =~ '^[0-9]+$' ]]; then
-#       BACKUP="$(echo $BACKUP)shortstack_development_$(echo $1).sql"
-#     elif [[ $1 == "latest" ]]; then
-#       BACKUP="$(ls $(echo $SS_DB_BACKUPS)shortstack_development_*.sql | head -1)"
-#     else
-#       BACKUP=$BACKUP$1
-#     fi
-
-#     echo $BACKUP
-#     if [ -f $BACKUP ]; then
-#       mysql -uroot shortstack_development -h 0.0.0.0 --port 3306 < $BACKUP
-#     else
-#       echo "Restore failed: backup not found"
-#     fi
-
-#   else
-#     echo "Usage: "
-#     echo "  # Restore backup by timestamp"
-#     echo "  dbrestore 1463072909"
-#     echo ""
-#     echo "  # Restore most recent backup (by timestamp)"
-#     echo "  dbrestore latest"
-#     echo ""
-#     echo "  # Restore backup by name"
-#     echo "  dbrestore my_db_backup"
-#   fi
-# }

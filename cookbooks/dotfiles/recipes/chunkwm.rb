@@ -4,14 +4,16 @@
 #
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
-bash 'install_chunkwm' do
-  code <<-EOF
-    brew tap crisidev/homebrew-chunkwm
-    brew install chunkwm
-  EOF
-  not_if { !`brew ls --versions chunkwm`.match('chunkwm').nil? }
+execute "install_chunkwm" do
+  cwd "#{node[:home]}"
+  user node[:user]
+  action :run
+  environment ({'HOME' => "#{node[:home]}", 'USER' => node[:user]})
+  command "brew tap crisidev/homebrew-chunkwm && brew install chunkwm"
+  not_if { !`su #{node[:user]} -l -c 'brew ls --versions chunkwm'`.match('chunkwm').nil? }
 end
 
+# TODO: Compile plugins
 link "#{node[:home]}/.chunkwm_plugins" do
   to "#{node[:dotfiles]}/dots/.chunkwm_plugins"
 end

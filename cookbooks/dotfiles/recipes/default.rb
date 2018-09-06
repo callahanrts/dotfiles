@@ -11,9 +11,16 @@
   :the_silver_searcher,
   :ripgrep
 ].each do |package|
-  bash "Install #{package.to_s}" do
-    code "brew install #{package.to_s}"
-    not_if { !`brew ls --versions #{package.to_s}`.match(package.to_s).nil? }
+  execute "Install #{package.to_s}" do
+    user node[:user]
+    action :run
+    environment ({'HOME' => "#{node[:home]}", 'USER' => node[:user]})
+    command "brew install #{package.to_s}"
+    not_if { !`su #{node[:user]} -l -c 'brew ls --versions #{package.to_s}'`.match(package.to_s).nil? }
   end
 end
 
+
+# TODO: Hide desktop icons
+# defaults write com.apple.finder CreateDesktop false
+# killall Finder

@@ -8,5 +8,5 @@ bash 'install_homebrew' do
   code <<-EOL
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   EOL
-  not_if { !`which brew`.match('brew').nil? }
+  not_if { !`su #{node[:user]} -l -c 'which brew'`.match('brew').nil? }
 end

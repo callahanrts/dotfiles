@@ -31,9 +31,8 @@ alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
 alias tm='tmuxinator'
 alias dc="docker-compose"
-alias dcdev="docker-compose -f docker-compose.dev.yml"
+# alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
-# alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 # NVM Exports
 # -----------
@@ -42,16 +41,68 @@ export EDITOR='nvim'
 
 # Source Files
 # ------------
-for f in ~/.zsh/*; do source $f; done
-# source $(brew --prefix nvm)/nvm.sh
+# for f in ~/.zsh/*; do source $f; done
+
+# ===============================================================================================
+# Misc. functions
+# ===============================================================================================
+
+function work(){
+  tmuxinator work || ta work
+}
+
+function notify() {
+  osascript -e 'display notification "'$1'" with title "'$2.'"'
+}
+
+function uberrefresh() {
+  kill -9 $(pgrep bersicht)
+  open -a $(ls /Applications | grep bersicht)
+}
+
+function go-home() {
+  tk work
+  docker-restart
+}
+
+# ===============================================================================================
+# FZF
+# ===============================================================================================
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */Users/codycallahan/.fzf/bin* ]]; then
+  export PATH="$PATH:/Users/codycallahan/.fzf/bin"
+fi
+
+## Man path
+## --------
+#if [[ ! "$MANPATH" == */Users/codycallahan/.fzf/man* && -d "/Users/codycallahan/.fzf/man" ]]; then
+#  export MANPATH="$MANPATH:/Users/codycallahan/.fzf/man"
+#fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/Users/codycallahan/.fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+# source "/Users/codycallahan/.fzf/shell/key-bindings.zsh"
+
+# fzf Completion
+export FZF_COMPLETION_TRIGGER='**'
+bindkey '^T' fzf-completion
+bindkey '^I' $fzf_default_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# ===============================================================================================
+# PATH
+# ===============================================================================================
 
 # PG
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
-
-# Go Path
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=/Users/codycallahan/go/go_appengine:$PATH # AppEngine
 
 # Rust Path
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -72,22 +123,7 @@ export PATH="/usr/local/sbin:$PATH"
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-# rbenv
-eval "$(rbenv init -)"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
-# Python3 Bins
-export PATH=/Users/codycallahan/Library//Python/3.6/bin:$PATH
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/codycallahan/Documents/projects/bbookmarks/node_modules/tabtab/.completions/sls.zsh
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/codycallahan/go/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/codycallahan/go/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/codycallahan/go/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/codycallahan/go/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$PATH:$HOME/.zsh/bin"

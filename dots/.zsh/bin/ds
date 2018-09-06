@@ -1,0 +1,161 @@
+#!/bin/bash
+
+api="shortstackapi_web_1"
+asterisk="asterisk_web_1"
+dealkit="dealkit_web_1"
+designer="shortstackdesigner_web_1"
+emails="shortstackemails_web_1"
+feeds="shortstackfeeds_web_1"
+es="docker.elastic.co"
+mysql="dockermysql_db_1"
+server="shortstackserver_web_1"
+shortstack2="shortstack2_web_1"
+shortstack="shortstack_web_1"
+style="shortstackstyle_web_1"
+
+ds::dcdev() {
+  docker-compose -f docker-compose.dev.yml $@
+}
+
+ds::ssstart() {
+  local all="yes"
+
+  for dep in $@; do
+    # Set the all flag to no if there is a missing container
+    if [ -z "$(docker ps | grep "$dep")" ]; then
+      echo "$dep not running"
+      all="no"
+    fi
+  done
+
+  # If all dependent containers are running
+  if [ "$all" = "yes" ]; then
+    ds::clean
+    if [ -f tmp/unicorn.pid ]; then
+      rm tmp/unicorn.pid
+      ds::dcdev run web rm tmp/unicorn.pid
+    fi
+
+    docker-sync-stack start
+  else
+    sleep 1
+    echo ""
+    ds::start
+  fi
+}
+
+ds::start() {
+    local dir=${PWD##*/}
+
+    case $dir in
+      asterisk)            ds::ssstart $mysql $es ;;
+      dealkit)             ds::ssstart $server $shortstack $shortstack2 ;;
+      dockerelasticsearch) ds::dcdev up ;;
+      dockermysql)         ds::dcdev up ;;
+      shortstack)          ds::ssstart $api $emails $style $asterisk ;;
+      shortstack2)         ds::ssstart $api $emails $style $asterisk ;;
+      shortstackadmin)     ds::ssstart $designer $dealkit ;;
+      shortstackapi)       ds::ssstart $mysql $es ;;
+      shortstackdesigner)  ds::ssstart $server $shortstack $shortstack2 ;;
+      shortstackemails)    ds::ssstart $mysql $es ;;
+      shortstackfeeds)     ds::ssstart $mysql $es ;;
+      shortstackserver)    ds::ssstart $api $emails $style $asterisk ;;
+      shortstackstyle)     ds::ssstart $mysql $es ;;
+      *)                   echo "project not defined"
+    esac
+}
+
+ds::clean() {
+  docker-sync-stack clean
+}
+
+ds::stop() {
+  docker-sync-stack stop
+}
+
+ds::stopall() {
+  docker stop $(docker ps -a -q)
+  # docker kill $(docker ps -q)
+}
+
+ds::restart() {
+  ds::clean
+  ds::start
+}
+
+ds::bash() {
+  if [[ $1 =~ '^[0-9]+$' ]]; then
+    local CONTAINER=$(docker ps | grep $1)
+  else
+    local CONTAINER=$(docker-compose ps | grep foreman)
+  fi
+
+  if [[ $CONTAINER ]]; then
+    docker exec -it $(echo $CONTAINER | perl -lne 'print $& if /^[^\s]+/') bash
+  else
+    echo "Container not found"
+  fi
+}
+
+ds::database() {
+  if hash dbmgr 2>/dev/null; then
+    case $1 in
+      backup)
+        echo "Backing up db..."
+        dbmgr mysql backup shortstack_development --host 0.0.0.0 -P 3306 -p ~/Documents/shortstack_apps/db_backups
+        ;;
+      restore)
+        echo "Restoring db..."
+        dbmgr mysql restore shortstack_development -P 3306 --host 0.0.0.0 -p ~/Documents/shortstack_apps/db_backups
+        ;;
+      *)
+        echo "ds db [action]"
+        echo "actions: "
+        echo "   backup"
+        echo "   restore"
+        ;;
+    esac
+  else
+    echo "dbmgr not found. install it with 'brew install dbmgr'"
+  fi
+}
+
+ds::help() {
+  echo "
+  Manage your ShortStack docker containers
+
+  Usage:
+    ds [COMMAND] [SUBCOMMAND]
+
+  Commands:
+    clean              Cleans up all docker-sync containers for a project
+    start              Starts docker-sync as well as running docker-compose up
+    stop               Stops the docker-sync and project containers
+    stopall            Stops all docker containers
+    bash               Opens a bash shell for the container corresponding to the current directory
+    restart            Runs ds clean and ds start together
+    db                 Requires dbmgr (brew install dbmgr)
+      Subcommands:
+        backup         Creates a backup of shortstack_development in ~/Documents/shortstack_apps/db_backups
+        restore        Restores from a backup
+    dc                 Passthrough to docker-compose using .docker-compose.dev.yml
+  "
+}
+
+main() {
+  case $1 in
+    clean)    ds::clean ;;
+    start)    ds::start ;;
+    stop)     ds::stop ;;
+    stopall)  ds::stopall ;;
+    bash)     ds::bash ;;
+    restart)  ds::restart ;;
+    db)       ds::database $2 ;;
+    dc)       ds::dcdev ${@:2} ;;
+    *)        ds::help ;;
+  esac
+}
+
+# unset ds::help ds::clean ds::start ds::stop ds::stopall ds::bash ds::restart ds::ssstart
+
+main "$@"

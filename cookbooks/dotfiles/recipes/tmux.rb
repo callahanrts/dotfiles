@@ -4,9 +4,13 @@
 #
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
-bash 'install_tmux' do
-  code "brew install tmux"
-  not_if { !`brew ls --versions tmux`.match('tmux').nil? }
+execute 'install_tmux' do
+  cwd "#{node[:home]}"
+  user node[:user]
+  action :run
+  environment ({'HOME' => "#{node[:home]}", 'USER' => node[:user]})
+  command "brew install tmux"
+  not_if { !`su #{node[:user]} -l -c 'brew ls --versions tmux'`.match('tmux').nil? }
 end
 
 

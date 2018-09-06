@@ -4,12 +4,16 @@
 #
 # Copyright (c) 2018 The Authors, All Rights Reserved.
 
+# TODO: Install ripgrep, the_silver_searcher
+
 config_dir = "#{node[:home]}/.config"
 
 bash "Install neovim" do
-  code "brew install neovim"
-  not_if { !`brew ls --versions neovim`.match('neovim').nil? }
+  code "su codycallahan -l -c 'brew install neovim'"
+  not_if { !`su codycallahan -l -c 'brew ls --versions neovim'`.match('neovim').nil? }
 end
+
+# TODO: Make sure ~/.config exists
 
 git "#{config_dir}/nvim" do
   repository "https://github.com/callahanrts/vim-config"
