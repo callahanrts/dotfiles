@@ -34,6 +34,11 @@ alias dc="docker-compose"
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
 
+export PROJECTS=~/Documents/projects/github/callahanrts/
+function project() {
+  cd ~/Documents/projects/github/callahanrts/$1
+}
+
 # NVM Exports
 # -----------
 export NVM_DIR=~/.nvm

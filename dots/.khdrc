@@ -126,7 +126,6 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # mod + r : Resize mode
   resize - escape : khd -e "mode activate default"
   lcmd - r : khd -e "mode activate resize"
-  # Was lctrl
   ctrl - r -> ![Alacritty,iTerm2] : khd -p "cmd - r"
 
   # Resize Mode
