@@ -132,3 +132,4 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$PATH:$HOME/.zsh/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
