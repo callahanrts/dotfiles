@@ -1,0 +1,232 @@
+# Vim insert mode bindings
+# Was lctrl
+# TODO: Write a quick shell function that checks the current application an
+#       either does nothing or emits the skhd -k "lalt - backspace"
+#  ctrl - w ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "lalt - backspace"
+#  ctrl - h ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "0x33"
+#  ctrl - c [Emacs] : khd -p "0x35" # Escape
+  ctrl - 0x29 : khd -p "0x24" # ctrl + ; = enter
+
+  # Generate Unique email
+  lcmd - m : skhd -t "`date +%s`@user.local"
+
+  # Copy Paste
+  # Could be helpful https://github.com/koekeishiya/khd/issues/61
+
+  # These should be set in macOS System Preferences > keyboard > shortcuts > app shortcuts
+  #   - Add a new shortcut for "Copy" cmd + shift - c
+  #   - Add a new shortcut for "Paste" cmd + shift - v
+  # ctrl + shift - c : khd -p "cmd - c"
+  # ctrl + shift - v : khd -p "lcmd - v"
+
+  # ===============================================================
+  #
+  # Application Keybindings
+  #
+  # ===============================================================
+
+    # Slack
+    # ctrl - k [Slack] : khd -p "alt - up"
+    # ctrl - j [Slack] : khd -p "alt - down"
+
+    # Chrome
+    ctrl - j [
+      "Google Chrome"             : khd -p "cmd + alt - left"
+      "Firefox"                   : khd -p "cmd + alt - left"
+      "Firefox Developer Edition" : khd -p "cmd + alt - left"
+    ]
+    ctrl - k [
+      "Google Chrome"             : khd -p "cmd + alt - right"
+      "Firefox"                   : khd -p "cmd + alt - right"
+      "Firefox Developer Edition" : khd -p "cmd + alt - right"
+    ]
+
+    cmd - q [
+      "VirtualBox VM" : khd -p "option - q"
+    ]
+    cmd - h [
+      "VirtualBox VM" : khd -p "option - h"
+    ]
+
+  # ===============================================================
+  #
+  # Mouse Bindings
+  #
+  # ===============================================================
+
+#    # LEFT
+#    khd mod_trigger_timeout 0.2
+#    - button4 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+#                osascript -e 'tell application "System Events" to key code 123 using command down'
+#    # rcmd : osascript -e 'tell application "System Events" to key code 55 using option down';\
+#    #             osascript -e 'tell application "System Events" to key code 123 using command down'
+#    0x60 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+#                osascript -e 'tell application "System Events" to key code 123 using command down'
+#    # RIGHT
+#    - button3 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+#                osascript -e 'tell application "System Events" to key code 124 using command down'
+#
+#    # ralt : osascript -e 'tell application "System Events" to key code 55 using option down';\
+#    #             osascript -e 'tell application "System Events" to key code 124 using command down'
+#    0x61 : osascript -e 'tell application "System Events" to key code 55 using option down';\
+#                osascript -e 'tell application "System Events" to key code 124 using command down'
+
+
+  # ===============================================================
+  #
+  # i3 Reference
+  #
+  # ===============================================================
+
+    # ---------------------------------------------------------------
+    # Basics
+    # ---------------------------------------------------------------
+    # mod + return : open new terminal
+
+    # mod + j : focus left
+    cmd - j : chunkc tiling::window -f west
+    cmd - j [
+      "VirtualBox VM" : echo "vbox disabled"
+    ]
+
+    # mod + k : focus ~down~ right
+    cmd - k : chunkc tiling::window -f east
+    cmd - k [
+      "VirtualBox VM" : false
+    ]
+
+    # mod + l : focus up
+    lcmd - l : chunkc tiling::window -f north
+
+    ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
+
+    ctrl - t -> : khd -p "cmd - t"
+    ctrl - t [
+      "kitty" : false
+      "iTerm2" : false
+      "Alacritty" : false
+    ]
+
+    # mod + ; : focus ~right~ down
+    cmd - 0x29 : chunkc tiling::window -f south # Semicolon
+
+    # mod + space : toggle focus mode
+    # mod + t : toggle layout
+    lcmd - t : chunkc tiling::desktop --rotate 90
+    lcmd - t [
+      "VirtualBox VM" : false
+    ]
+
+    # ---------------------------------------------------------------
+    # Moving Windows
+    # ---------------------------------------------------------------
+    # mod + shift + j : move window left
+    cmd + shift - j : chunkc tiling::window --warp west
+    # TODO: no vbox
+
+    # mod + shift + k : move window down
+    cmd + shift - k : chunkc tiling::window --warp east # I prefer right
+    # TODO: no vbox
+
+    # mod + shift + l : move window up
+    cmd + shift - l : chunkc tiling::window --warp south
+    # TODO: no vbox
+
+    # mod + shift + ; : move window right
+    cmd + shift - 0x29 : chunkc tiling::window --warp north # Semicolon
+
+    # ---------------------------------------------------------------
+    # Modifying Windows
+    # ---------------------------------------------------------------
+    # mod + f : toggle fullscreen
+    cmd - f : chunkc tiling::window --toggle fullscreen
+    # TODO: no vbox
+    alt - f -> : khd -p "cmd - f"
+
+    # mod + v : Split window vertically
+    cmd + shift - v : chunkc set bsp_split_mode vertical
+
+    # mod + h : Split window horizontally
+    cmd - h : chunkc set bsp_split_mode horizontal
+
+    # ---------------------------------------------------------------
+    # Resize Mode
+    # ---------------------------------------------------------------
+
+    # Fix reload keybinds
+    ctrl - r -> : khd -p "cmd - r"
+    ctrl - r [
+      "Alacritty" : false
+      "iTerm2"    : false
+    ]
+
+    # Resize Mode
+    :: resize @ : chunkc border::color 0xFFBDD322; sleep 3; chunkc border::color 0xFFC678DD && skhd -k "escape"
+    resize < escape ; default
+    lcmd - r ; resize  # mod + r : Resize mode
+    resize < l : chunkc tiling::window --use-temporary-ratio 0.015 --adjust-window-edge east
+    resize < h : chunkc tiling::window --use-temporary-ratio 0.015 --adjust-window-edge west
+    resize < j : chunkc tiling::window --use-temporary-ratio 0.015 --adjust-window-edge south
+    resize < k : chunkc tiling::window --use-temporary-ratio 0.015 --adjust-window-edge north
+
+    # ---------------------------------------------------------------
+    # Changing the Container Layout
+    # ---------------------------------------------------------------
+
+    # mod + e : default
+    cmd - e : chunkc tiling::desktop --layout bsp
+    cmd - e [
+      "VirtualBox VM" : false
+    ]
+
+    # mod + s : stacking
+    lcmd - s : chunkc tiling::desktop --layout monocle
+    lcmd - s [
+      "VirtualBox VM" : false
+    ]
+    #alt - s -> : khd -p "cmd - s"
+
+    # mod + w : tabbed
+
+    # ---------------------------------------------------------------
+    # Floating
+    # ---------------------------------------------------------------
+    # mod + shift + space : toggle floating
+    # mod + left click : drag floating
+
+    # ---------------------------------------------------------------
+    # Using Workspaces
+    # ---------------------------------------------------------------
+    # mod + 0-9 : switch workspaces # Already configured using macOs System
+    # mod + shift + 0-9 : move window to another workspace
+    cmd + shift - 1 : chunkc tiling::window --send-to-desktop 1
+    cmd + shift - 2 : chunkc tiling::window --send-to-desktop 2
+    cmd + shift - 3 : chunkc tiling::window --send-to-desktop 3
+    cmd + shift - 4 : chunkc tiling::window --send-to-desktop 4
+    cmd + shift - 5 : chunkc tiling::window --send-to-desktop 5
+    cmd + shift - 6 : chunkc tiling::window --send-to-desktop 6
+    cmd + shift - 7 : chunkc tiling::window --send-to-desktop 7
+    cmd + shift - 8 : chunkc tiling::window --send-to-desktop 8
+    cmd + shift - 9 : chunkc tiling::window --send-to-desktop 9
+    cmd + shift - 0 : chunkc tiling::window --send-to-desktop 10
+    # cmd + shift - 1 [
+    #   "VirtualBox VM" : false
+    #   ... etc
+    # ]
+
+    # ---------------------------------------------------------------
+    # Opening Applications / Closing Windows
+    # ---------------------------------------------------------------
+    # mod + d : open application launcher # Alfred keybinding
+    # mod + shift + q : Kill a window
+
+    # ---------------------------------------------------------------
+    # Restart / Exit
+    # ---------------------------------------------------------------
+
+    # mod + shift + c : Reload the config file
+    # mod + shift + r : Restart i3 in place
+    # Reload chunkwm - skhd hot reloads so no need there
+    cmd + shift - r : sh ~/.chunkwmrc
+
+    # mod + shift + e : exit i3

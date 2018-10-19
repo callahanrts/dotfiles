@@ -69,5 +69,6 @@ chunkc tiling::rule --owner Finder --name Copy --state float &
 chunkc tiling::rule --owner \"App Store\" --state float &
 #chunkc tiling::rule --owner Emacs --state tile &
 chunkc tiling::rule --owner "Emacs.*" --except "^$" --state tile &
+chunkc tiling::rule --owner "Simulator" --except "^$" --state tile &
 #chunkc tiling::rule --owner alacritty --state tile &
 # chunkc tiling::rule --owner Octave-gui --except "^$" --state tile &
