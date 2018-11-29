@@ -1,17 +1,17 @@
 #!/bin/bash
 
-api="shortstackapi_web_1"
-asterisk="asterisk_web_1"
-dealkit="dealkit_web_1"
-designer="shortstackdesigner_web_1"
-emails="shortstackemails_web_1"
-feeds="shortstackfeeds_web_1"
+api="ss-api"
+asterisk="ss-asterisk"
+dealkit="dealkit"
+designer="ss-designer"
+emails="ss-emails"
+feeds="ss-feeds"
 es="docker.elastic.co"
-mysql="dockermysql_db_1"
-server="shortstackserver_web_1"
-shortstack2="shortstack2_web_1"
-shortstack="shortstack_web_1"
-style="shortstackstyle_web_1"
+mysql="mysqldb"
+server="ss-server"
+shortstack2="ss-app2"
+shortstack="ss-app"
+style="ss-style"
 
 ds::dcdev() {
   docker-compose -f docker-compose.dev.yml $@
