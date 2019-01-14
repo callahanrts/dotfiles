@@ -6,6 +6,7 @@
     "Google Chrome" : skhd -k "alt - backspace"
     "Firefox"       : skhd -k "alt - backspace"
     "Slack"         : skhd -k "alt - backspace"
+    "Sblack"        : skhd -k "alt - backspace"
     "Sequel Pro"    : skhd -k "alt - backspace"
     "Messages"      : skhd -k "alt - backspace"
   ]
@@ -16,6 +17,7 @@
     "Google Chrome" : skhd -k "backspace"
     "Firefox"       : skhd -k "backspace"
     "Slack"         : skhd -k "backspace"
+    "Sblack"        : skhd -k "backspace"
     "Sequel Pro"    : skhd -k "backspace"
     "Messages"      : skhd -k "backspace"
   ]
@@ -45,6 +47,7 @@
       "Firefox"                   : skhd -k "cmd + alt - left"
       "Firefox Developer Edition" : skhd -k "cmd + alt - left"
       "Slack"                     : skhd -k "alt - down"
+      "Sblack"                    : skhd -k "alt - down"
     ]
 
     ctrl - k [
@@ -52,6 +55,7 @@
       "Firefox"                   : skhd -k "cmd + alt - right"
       "Firefox Developer Edition" : skhd -k "cmd + alt - right"
       "Slack"                     : skhd -k "alt - up"
+      "Sblack"                    : skhd -k "alt - down"
     ]
 
 
@@ -81,6 +85,7 @@
       "Google Chrome" : khd -p "cmd - t"
       "Firefox"       : khd -p "cmd - t"
       "Slack"         : khd -p "cmd - t"
+      "Sblack"        : khd -p "cmd - t"
     ]
 
     # mod + ; : focus ~right~ down
@@ -127,6 +132,7 @@
       "Google Chrome" : khd -p "cmd - r"
       "Firefox"       : khd -p "cmd - r"
       "Slack"         : khd -p "cmd - r"
+      "Sblack"        : khd -p "cmd - r"
     ]
 
     # Resize Mode
