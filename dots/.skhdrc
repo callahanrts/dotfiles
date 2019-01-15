@@ -1,11 +1,28 @@
 # Vim insert mode bindings
-# Was lctrl
-# TODO: Write a quick shell function that checks the current application an
-#       either does nothing or emits the skhd -k "lalt - backspace"
-#  ctrl - w ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "lalt - backspace"
-#  ctrl - h ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "0x33"
-#  ctrl - c [Emacs] : khd -p "0x35" # Escape
-  ctrl - 0x29 : khd -p "0x24" # ctrl + ; = enter
+
+  # ctrl - w ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "lalt - backspace"
+  # Delete Backward word in non terminal applications
+  ctrl - w [
+    "Google Chrome" : skhd -k "alt - backspace"
+    "Firefox"       : skhd -k "alt - backspace"
+    "Slack"         : skhd -k "alt - backspace"
+    "Sblack"        : skhd -k "alt - backspace"
+    "Sequel Pro"    : skhd -k "alt - backspace"
+    "Messages"      : skhd -k "alt - backspace"
+  ]
+
+  # ctrl - h ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "0x33"
+  # Delete backward char in non terminal applications
+  ctrl - h [
+    "Google Chrome" : skhd -k "backspace"
+    "Firefox"       : skhd -k "backspace"
+    "Slack"         : skhd -k "backspace"
+    "Sblack"        : skhd -k "backspace"
+    "Sequel Pro"    : skhd -k "backspace"
+    "Messages"      : skhd -k "backspace"
+  ]
+
+  ctrl - 0x29 : skhd -k "0x24" # ctrl + ; = enter
 
   # Generate Unique email
   lcmd - m : skhd -t "`date +%s`@user.local"
@@ -25,51 +42,21 @@
   #
   # ===============================================================
 
-    # Slack
-    # ctrl - k [Slack] : khd -p "alt - up"
-    # ctrl - j [Slack] : khd -p "alt - down"
-
-    # Chrome
     ctrl - j [
-      "Google Chrome"             : khd -p "cmd + alt - left"
-      "Firefox"                   : khd -p "cmd + alt - left"
-      "Firefox Developer Edition" : khd -p "cmd + alt - left"
+      "Google Chrome"             : skhd -k "cmd + alt - left"
+      "Firefox"                   : skhd -k "cmd + alt - left"
+      "Firefox Developer Edition" : skhd -k "cmd + alt - left"
+      "Slack"                     : skhd -k "alt - down"
+      "Sblack"                    : skhd -k "alt - down"
     ]
+
     ctrl - k [
-      "Google Chrome"             : khd -p "cmd + alt - right"
-      "Firefox"                   : khd -p "cmd + alt - right"
-      "Firefox Developer Edition" : khd -p "cmd + alt - right"
+      "Google Chrome"             : skhd -k "cmd + alt - right"
+      "Firefox"                   : skhd -k "cmd + alt - right"
+      "Firefox Developer Edition" : skhd -k "cmd + alt - right"
+      "Slack"                     : skhd -k "alt - up"
+      "Sblack"                    : skhd -k "alt - down"
     ]
-
-    cmd - q [
-      "VirtualBox VM" : khd -p "option - q"
-    ]
-    cmd - h [
-      "VirtualBox VM" : khd -p "option - h"
-    ]
-
-  # ===============================================================
-  #
-  # Mouse Bindings
-  #
-  # ===============================================================
-
-#    # LEFT
-#    khd mod_trigger_timeout 0.2
-#    - button4 : osascript -e 'tell application "System Events" to key code 55 using option down';\
-#                osascript -e 'tell application "System Events" to key code 123 using command down'
-#    # rcmd : osascript -e 'tell application "System Events" to key code 55 using option down';\
-#    #             osascript -e 'tell application "System Events" to key code 123 using command down'
-#    0x60 : osascript -e 'tell application "System Events" to key code 55 using option down';\
-#                osascript -e 'tell application "System Events" to key code 123 using command down'
-#    # RIGHT
-#    - button3 : osascript -e 'tell application "System Events" to key code 55 using option down';\
-#                osascript -e 'tell application "System Events" to key code 124 using command down'
-#
-#    # ralt : osascript -e 'tell application "System Events" to key code 55 using option down';\
-#    #             osascript -e 'tell application "System Events" to key code 124 using command down'
-#    0x61 : osascript -e 'tell application "System Events" to key code 55 using option down';\
-#                osascript -e 'tell application "System Events" to key code 124 using command down'
 
 
   # ===============================================================
@@ -85,26 +72,20 @@
 
     # mod + j : focus left
     cmd - j : chunkc tiling::window -f west
-    cmd - j [
-      "VirtualBox VM" : echo "vbox disabled"
-    ]
 
     # mod + k : focus ~down~ right
     cmd - k : chunkc tiling::window -f east
-    cmd - k [
-      "VirtualBox VM" : false
-    ]
 
     # mod + l : focus up
     lcmd - l : chunkc tiling::window -f north
 
     ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
 
-    ctrl - t -> : khd -p "cmd - t"
     ctrl - t [
-      "kitty" : false
-      "iTerm2" : false
-      "Alacritty" : false
+      "Google Chrome" : khd -p "cmd - t"
+      "Firefox"       : khd -p "cmd - t"
+      "Slack"         : khd -p "cmd - t"
+      "Sblack"        : khd -p "cmd - t"
     ]
 
     # mod + ; : focus ~right~ down
@@ -113,24 +94,18 @@
     # mod + space : toggle focus mode
     # mod + t : toggle layout
     lcmd - t : chunkc tiling::desktop --rotate 90
-    lcmd - t [
-      "VirtualBox VM" : false
-    ]
 
     # ---------------------------------------------------------------
     # Moving Windows
     # ---------------------------------------------------------------
     # mod + shift + j : move window left
     cmd + shift - j : chunkc tiling::window --warp west
-    # TODO: no vbox
 
     # mod + shift + k : move window down
     cmd + shift - k : chunkc tiling::window --warp east # I prefer right
-    # TODO: no vbox
 
     # mod + shift + l : move window up
     cmd + shift - l : chunkc tiling::window --warp south
-    # TODO: no vbox
 
     # mod + shift + ; : move window right
     cmd + shift - 0x29 : chunkc tiling::window --warp north # Semicolon
@@ -140,8 +115,7 @@
     # ---------------------------------------------------------------
     # mod + f : toggle fullscreen
     cmd - f : chunkc tiling::window --toggle fullscreen
-    # TODO: no vbox
-    alt - f -> : khd -p "cmd - f"
+    alt - f -> : khd -k "cmd - f"
 
     # mod + v : Split window vertically
     cmd + shift - v : chunkc set bsp_split_mode vertical
@@ -154,10 +128,11 @@
     # ---------------------------------------------------------------
 
     # Fix reload keybinds
-    ctrl - r -> : khd -p "cmd - r"
     ctrl - r [
-      "Alacritty" : false
-      "iTerm2"    : false
+      "Google Chrome" : khd -p "cmd - r"
+      "Firefox"       : khd -p "cmd - r"
+      "Slack"         : khd -p "cmd - r"
+      "Sblack"        : khd -p "cmd - r"
     ]
 
     # Resize Mode
@@ -175,18 +150,10 @@
 
     # mod + e : default
     cmd - e : chunkc tiling::desktop --layout bsp
-    cmd - e [
-      "VirtualBox VM" : false
-    ]
 
     # mod + s : stacking
     lcmd - s : chunkc tiling::desktop --layout monocle
-    lcmd - s [
-      "VirtualBox VM" : false
-    ]
     #alt - s -> : khd -p "cmd - s"
-
-    # mod + w : tabbed
 
     # ---------------------------------------------------------------
     # Floating
@@ -209,10 +176,6 @@
     cmd + shift - 8 : chunkc tiling::window --send-to-desktop 8
     cmd + shift - 9 : chunkc tiling::window --send-to-desktop 9
     cmd + shift - 0 : chunkc tiling::window --send-to-desktop 10
-    # cmd + shift - 1 [
-    #   "VirtualBox VM" : false
-    #   ... etc
-    # ]
 
     # ---------------------------------------------------------------
     # Opening Applications / Closing Windows

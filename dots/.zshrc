@@ -17,6 +17,9 @@ ZSH_THEME=""
 plugins=(git zsh-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
+autoload -U promptinit; promptinit
+prompt pure
+export PURE_PROMPT_SYMBOL=" ❯"
 
 autoload -U promptinit; promptinit
 PURE_PROMPT_SYMBOL=" ❯"
