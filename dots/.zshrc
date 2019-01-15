@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="avit-custom"
+ZSH_THEME=""
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -17,6 +17,10 @@ ZSH_THEME="avit-custom"
 plugins=(git zsh-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
+
+autoload -U promptinit; promptinit
+PURE_PROMPT_SYMBOL=" ❯"
+prompt pure
 
 # Aliases
 # -------
@@ -60,7 +64,7 @@ function notify() {
   osascript -e 'display notification "'$1'" with title "'$2.'"'
 }
 
-function uberrefresh() {
+function uberrestart() {
   kill -9 $(pgrep bersicht)
   open -a $(ls /Applications | grep bersicht)
 }
@@ -132,4 +136,15 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="$PATH:$HOME/.zsh/bin"
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:$HOME/.emacs.d/bin"
+
+# opam configuration
+test -r /Users/cody/.opam/opam-init/init.zsh && . /Users/cody/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# converts ocaml code into reason
+alias mlre="pbpaste | refmt --parse ml --print re --interface false | pbcopy"
+# converts reason code into ocaml
+alias reml="pbpaste | refmt --parse re --print ml --interface false | pbcopy"

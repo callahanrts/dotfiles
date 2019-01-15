@@ -74,10 +74,10 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # mod + return : open new terminal
 
   # mod + j : focus left
-  cmd - j ![VirtualBox VM] : chunkc tiling::window -f west
+  cmd - j ![VirtualBox VM] : chunkc tiling::window --focus west
 
   # mod + k : focus ~down~ right
-  cmd - k ![VirtualBox VM] : chunkc tiling::window -f east # I prefer focus right
+  cmd - k ![VirtualBox VM] : chunkc tiling::window --focus east # I prefer focus right
 
   # mod + l : focus up
   lcmd - l : chunkc tiling::window -f north
@@ -179,6 +179,14 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # ---------------------------------------------------------------
   # mod + d : open application launcher # Alfred keybinding
   # mod + shift + q : Kill a window
+  cmd - 1 : khd -p "cmd + alt - 1" && uberrefresh
+  cmd - 2 : khd -p "cmd + alt - 2" && uberrefresh
+  cmd - 3 : khd -p "cmd + alt - 3" && uberrefresh
+  cmd - 4 : khd -p "cmd + alt - 4" && uberrefresh
+  cmd - 5 : khd -p "cmd + alt - 5" && uberrefresh
+
+
+  # osascript -e 'tell application "U<0308>bersicht" to refresh'
 
   # ---------------------------------------------------------------
   # Restart / Exit
