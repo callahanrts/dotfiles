@@ -156,7 +156,7 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # Floating
   # ---------------------------------------------------------------
   # mod + shift + space : toggle floating
-  # mod + left click : drag floating
+  mod + left click : drag floating
 
   # ---------------------------------------------------------------
   # Using Workspaces
