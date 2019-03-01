@@ -11,6 +11,7 @@ mysql="mysqldb"
 server="ss-server"
 shortstack2="ss-app2"
 shortstack="ss-app"
+services="ss-services"
 style="ss-style"
 
 ds::dcdev() {
@@ -54,6 +55,7 @@ ds::start() {
       dockermysql)         ds::dcdev up ;;
       shortstack)          ds::ssstart $api $emails $style $asterisk ;;
       shortstack2)         ds::ssstart $api $emails $style $asterisk ;;
+      shortstackservices)  ds::ssstart $api $emails $style $asterisk ;;
       shortstackadmin)     ds::ssstart $designer $dealkit ;;
       shortstackapi)       ds::ssstart $mysql $es ;;
       shortstackdesigner)  ds::ssstart $server $shortstack $shortstack2 ;;

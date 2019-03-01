@@ -3,6 +3,7 @@
   # ctrl - w ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "lalt - backspace"
   # Delete Backward word in non terminal applications
   ctrl - w [
+    "Vivaldi"       : skhd -k "alt - backspace"
     "Google Chrome" : skhd -k "alt - backspace"
     "Firefox"       : skhd -k "alt - backspace"
     "Slack"         : skhd -k "alt - backspace"
@@ -14,6 +15,7 @@
   # ctrl - h ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "0x33"
   # Delete backward char in non terminal applications
   ctrl - h [
+    "Vivaldi"       : skhd -k "backspace"
     "Google Chrome" : skhd -k "backspace"
     "Firefox"       : skhd -k "backspace"
     "Slack"         : skhd -k "backspace"
@@ -160,6 +162,7 @@
     # ---------------------------------------------------------------
     # mod + shift + space : toggle floating
     # mod + left click : drag floating
+    lcmd + shift - f : chunkc set window_float_next 1
 
     # ---------------------------------------------------------------
     # Using Workspaces

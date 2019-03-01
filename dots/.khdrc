@@ -32,8 +32,8 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # ctrl - j [Slack] : khd -p "alt - down"
 
   # Chrome
-  ctrl - j [Google Chrome,Firefox,Firefox Developer Edition] : khd -p "cmd + alt - left" # tab
-  ctrl - k [Google Chrome,Firefox,Firefox Developer Edition] : khd -p "cmd + alt - right" # tab
+  ctrl - j [Vivaldi,Google Chrome,Firefox,Firefox Developer Edition] : khd -p "cmd + alt - left" # tab
+  ctrl - k [Vivaldi,Google Chrome,Firefox,Firefox Developer Edition] : khd -p "cmd + alt - right" # tab
 
   cmd - q [VirtualBox VM] : khd -p "option - q"
   cmd - h [VirtualBox VM] : khd -p "option - h"
@@ -83,7 +83,7 @@ lcmd - m : khd -w "`date +%s`@user.com"
   lcmd - l : chunkc tiling::window -f north
   # Was lctrl
   ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
-  ctrl - t ![kitty,iTerm2,Alacritty] -> : khd -p "cmd - t"
+  ctrl - t ![Vivaldi,kitty,iTerm2,Alacritty] -> : khd -p "cmd - t"
 
   # mod + ; : focus ~right~ down
   cmd - 0x29 : chunkc tiling::window -f south # Semicolon
