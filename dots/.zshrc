@@ -41,11 +41,6 @@ alias dc="docker-compose"
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
 
-export PROJECTS=~/Documents/projects/github/callahanrts/
-function project() {
-  cd ~/Documents/projects/github/callahanrts/$1
-}
-
 # NVM Exports
 # -----------
 export NVM_DIR=~/.nvm
@@ -75,6 +70,12 @@ function uberrestart() {
 function go-home() {
   tk work
   docker-restart
+}
+
+function notes() {
+  pushd ~/Projects/devlog
+  ./editnewjournalfile.sh
+  popd
 }
 
 # ===============================================================================================
@@ -133,7 +134,7 @@ export PATH="/usr/local/sbin:$PATH"
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 export PATH="$PATH:$HOME/.zsh/bin"
 
@@ -143,3 +144,7 @@ export PATH="$PATH:$HOME/.emacs.d/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/.rvm/bin:$PATH"
+
+# Python2 Homebrew
+export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"

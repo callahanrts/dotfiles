@@ -5,6 +5,8 @@
   ctrl - w [
     "Vivaldi"       : skhd -k "alt - backspace"
     "Google Chrome" : skhd -k "alt - backspace"
+    "Electron"      : skhd -k "alt - backspace"
+    "Mead"          : skhd -k "alt - backspace"
     "Firefox"       : skhd -k "alt - backspace"
     "Slack"         : skhd -k "alt - backspace"
     "Sblack"        : skhd -k "alt - backspace"
@@ -17,6 +19,8 @@
   ctrl - h [
     "Vivaldi"       : skhd -k "backspace"
     "Google Chrome" : skhd -k "backspace"
+    "Electron"      : skhd -k "backspace"
+    "Mead"          : skhd -k "backspace"
     "Firefox"       : skhd -k "backspace"
     "Slack"         : skhd -k "backspace"
     "Sblack"        : skhd -k "backspace"
@@ -131,6 +135,7 @@
 
     # Fix reload keybinds
     ctrl - r [
+      "Electron"      : khd -p "cmd - r"
       "Google Chrome" : khd -p "cmd - r"
       "Firefox"       : khd -p "cmd - r"
       "Slack"         : khd -p "cmd - r"
