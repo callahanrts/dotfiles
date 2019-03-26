@@ -74,7 +74,7 @@ function go-home() {
 
 function notes() {
   pushd ~/Projects/devlog
-  ./editnewjournalfile.sh
+  ./editnewjournalfile.sh $1
   popd
 }
 
