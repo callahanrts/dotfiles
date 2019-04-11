@@ -6,12 +6,11 @@
 
 package "xterm"
 
-# Needed for installing from AUR manually
 package "linux-headers"
 package "file"
 package "xdotool"
 package "feh"
-
-#bash "Install exa" do
-  #code "yaourt -S exa-git --noconfirm"
-#end
+package "fzf"
+package "ripgrep"
+package "xautomation"
+package "exa"
