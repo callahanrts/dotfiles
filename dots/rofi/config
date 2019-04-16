@@ -3,13 +3,18 @@ rofi.key-run: SuperL-d
 rofi.key-window: SuperL-Tab
 
 ! Variables
-rofi.terminal: gnome-terminal
+rofi.terminal: kitty
 rofi.eh: 1
-rofi.padding: 200 !625
+rofi.padding: 525
 rofi.bw: 0
 rofi.bc: #000000
 rofi.bg: #00FF0000
 rofi.font: Helvetica Neue 35
+
+rofi.fullscreen: true
+
+rofi.modi: combi
+rofi.combi-modi: window,drun,ssh
 
 
 ! ------------------------------------------------------------------------------
@@ -22,4 +27,4 @@ rofi.color-urgent: #00000000, #CCCCCC, #00000000,  #00000000,  #c678dd
 rofi.color-active: #00000000, #CCCCCC, #00000000,  #00000000,  #c678dd
 
 !                  'background', 'border'
-rofi.color-window: #88000000,    #00000000
+rofi.color-window: #CC000000,    #00000000
