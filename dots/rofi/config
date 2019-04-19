@@ -16,7 +16,6 @@ rofi.fullscreen: true
 rofi.modi: combi
 rofi.combi-modi: window,drun,ssh
 
-
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
@@ -28,3 +27,6 @@ rofi.color-active: #00000000, #CCCCCC, #00000000,  #00000000,  #c678dd
 
 !                  'background', 'border'
 rofi.color-window: #CC000000,    #00000000
+
+rofi.fake-transparency: true
+rofi.fake-background: background
