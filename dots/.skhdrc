@@ -201,3 +201,5 @@
     cmd + shift - r : sh ~/.chunkwmrc
 
     # mod + shift + e : exit i3
+
+    cmd + ctrl - b : sh /Users/codycallahan/.zsh/bin/newbg

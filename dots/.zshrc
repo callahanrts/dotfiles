@@ -40,6 +40,7 @@ alias tm='tmuxinator'
 alias dc="docker-compose"
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
+alias fix-audio='sudo killall coreaudiod'
 
 # NVM Exports
 # -----------
@@ -73,9 +74,9 @@ function go-home() {
 }
 
 function notes() {
-  pushd ~/Projects/devlog
+  pushd ~/Projects/devlog > /dev/null
   ./editnewjournalfile.sh $1
-  popd
+  popd > /dev/null
 }
 
 # ===============================================================================================
