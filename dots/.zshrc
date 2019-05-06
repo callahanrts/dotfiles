@@ -74,9 +74,29 @@ function go-home() {
 }
 
 function notes() {
-  pushd ~/Projects/devlog > /dev/null
+  decrypt _notes $1
+}
+
+function _notes() {
+  pushd devlog > /dev/null
+  git pull origin master
   ./editnewjournalfile.sh $1
   popd > /dev/null
+}
+
+function projects() {
+  decrypt nvim
+}
+
+function decrypt() {
+  res=$(hdiutil attach ~/Projects.dmg)
+  pushd /Volumes/Projects > /dev/null
+  $@
+  popd > /dev/null
+  # Get the disk number /dev/diskN from the attach output
+  disk=$(echo $res | grep "GUID_partition_scheme" | sed 's/.*\(disk.\).*/\1/')
+  echo "Detaching /dev/$disk..."
+  hdiutil detach "/dev/$disk"
 }
 
 # ===============================================================================================
