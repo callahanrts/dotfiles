@@ -33,6 +33,11 @@
   # Generate Unique email
   lcmd - m : skhd -t "`date +%s`@user.local"
 
+  ctrl - c [
+    "Emacs" : skhd -k "escape"
+  ]
+
+
   # Copy Paste
   # Could be helpful https://github.com/koekeishiya/khd/issues/61
 
@@ -85,7 +90,13 @@
     # mod + l : focus up
     lcmd - l : chunkc tiling::window -f north
 
-    ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
+    # ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
+    ctrl - l [
+      "Google Chrome" : khd -p "cmd - l"
+      "Firefox"       : khd -p "cmd - l"
+      "Slack"         : khd -p "cmd - l"
+      "Sblack"        : khd -p "cmd - l"
+    ]
 
     ctrl - t [
       "Google Chrome" : khd -p "cmd - t"

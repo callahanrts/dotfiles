@@ -74,13 +74,9 @@ function go-home() {
 }
 
 function notes() {
-  decrypt _notes $1
-}
-
-function _notes() {
-  pushd devlog > /dev/null
+  pushd /Volumes/Projects/devlog > /dev/null
   git pull origin master
-  ./editnewjournalfile.sh $1
+  ./editnewjournalfile.sh $1 $2
   popd > /dev/null
 }
 
@@ -89,7 +85,7 @@ function projects() {
 }
 
 function decrypt() {
-  res=$(hdiutil attach ~/Projects.dmg)
+  res=$(hdiutil attach /Users/codycallahan/Projects.dmg)
   pushd /Volumes/Projects > /dev/null
   $@
   popd > /dev/null

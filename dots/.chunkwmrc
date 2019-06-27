@@ -68,8 +68,7 @@ chunkc core::load tiling.so
 chunkc tiling::rule --owner Spotify --role AXWindow --subrole AXDialog --state tile &
 chunkc tiling::rule --owner Finder --name Copy --state float &
 chunkc tiling::rule --owner \"App Store\" --state float &
+# chunkc tiling::rule --owner "Slack" --desktop 3 --state float &
 #chunkc tiling::rule --owner Emacs --state tile &
 chunkc tiling::rule --owner "Emacs.*" --except "^$" --state tile &
 chunkc tiling::rule --owner "Simulator" --except "^$" --state tile &
-#chunkc tiling::rule --owner alacritty --state tile &
-# chunkc tiling::rule --owner Octave-gui --except "^$" --state tile &

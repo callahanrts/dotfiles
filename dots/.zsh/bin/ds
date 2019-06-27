@@ -32,6 +32,7 @@ ds::ssstart() {
   # If all dependent containers are running
   if [ "$all" = "yes" ]; then
     ds::clean
+    # ds::create_volume
     if [ -f tmp/unicorn.pid ]; then
       rm tmp/unicorn.pid
       ds::dcdev run web rm tmp/unicorn.pid
@@ -59,10 +60,10 @@ ds::start() {
       shortstackadmin)     ds::ssstart $designer $dealkit ;;
       shortstackapi)       ds::ssstart $mysql $es ;;
       shortstackdesigner)  ds::ssstart $server $shortstack $shortstack2 ;;
-      shortstackemails)    ds::ssstart $mysql $es ;;
-      shortstackfeeds)     ds::ssstart $mysql $es ;;
+      shortstackemails)    ds::ssstart $api $mysql $es ;;
+      shortstackfeeds)     ds::ssstart $api $mysql $es ;;
       shortstackserver)    ds::ssstart $api $emails $style $asterisk ;;
-      shortstackstyle)     ds::ssstart $mysql $es ;;
+      shortstackstyle)     ds::ssstart $api $mysql $es ;;
       *)                   echo "project not defined"
     esac
 }
