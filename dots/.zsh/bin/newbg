@@ -8,7 +8,7 @@ wget -O ~/.wallpapers/background.jpg https://source.unsplash.com/2880x1800/?natu
 sqlite3 ~/Library/Application\ Support/Dock/desktoppicture.db "delete from data"
 osascript <<END
   tell application "System Events"
-      set picture of every desktop to "/Users/codycallahan/.wallpapers/background.jpg"
+      set picture of every desktop to "/Users/$(whoami)/.wallpapers/background.jpg"
   end tell
 END
 killall Dock

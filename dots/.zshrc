@@ -38,6 +38,7 @@ alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
 alias tm='tmuxinator'
 alias dc="docker-compose"
+alias ag='ag --path-to-ignore ~/.ignore'
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
 alias fix-audio='sudo killall coreaudiod'
@@ -86,6 +87,10 @@ function _notes() {
 
 function projects() {
   decrypt nvim
+}
+
+function ccal-clone() {
+  git clone git@ccal.github.com:$1
 }
 
 function decrypt() {
