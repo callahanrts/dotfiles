@@ -4,9 +4,8 @@ khd mode default on_enter chunkc border::color 0xFFC678DD # Default mode color
 
 # Vim insert mode bindings
 # Was lctrl
-ctrl - w ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "lalt - backspace"
-ctrl - h ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox,Emacs] : khd -p "0x33"
-ctrl - c [Emacs] : khd -p "0x35" # Escape
+ctrl - w ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "lalt - backspace"
+ctrl - h ![iTerm2,kitty,Terminal,alacritty,Alacritty,VirtualBox VM,VMware Fusion,VirtualBox] : khd -p "0x33"
 ctrl - 0x29 : khd -p "0x24" # ctrl + ; = enter
 
 # Generate Unique email
@@ -82,7 +81,7 @@ lcmd - m : khd -w "`date +%s`@user.com"
   # mod + l : focus up
   lcmd - l : chunkc tiling::window -f north
   # Was lctrl
-  ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
+  ctrl - l [Firefox,Google Chrome] -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
   ctrl - t ![Vivaldi,kitty,iTerm2,Alacritty] -> : khd -p "cmd - t"
 
   # mod + ; : focus ~right~ down

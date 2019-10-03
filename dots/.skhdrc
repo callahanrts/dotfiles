@@ -37,7 +37,6 @@
     "Emacs" : skhd -k "escape"
   ]
 
-
   # Copy Paste
   # Could be helpful https://github.com/koekeishiya/khd/issues/61
 
@@ -93,9 +92,7 @@
     # ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
     ctrl - l [
       "Google Chrome" : khd -p "cmd - l"
-      "Firefox"       : khd -p "cmd - l"
-      "Slack"         : khd -p "cmd - l"
-      "Sblack"        : khd -p "cmd - l"
+      "Firefox" : khd -p "cmd - l"
     ]
 
     ctrl - t [
