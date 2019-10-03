@@ -38,8 +38,10 @@ alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
 alias tm='tmuxinator'
 alias dc="docker-compose"
+alias ag='ag --path-to-ignore ~/.ignore'
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
+alias gitlab-runner="gitlab-ci-multi-runner"
 alias fix-audio='sudo killall coreaudiod'
 
 export EDITOR='nvim'
