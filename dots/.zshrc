@@ -42,9 +42,6 @@ alias dc="docker-compose"
 alias ls='exa'
 alias fix-audio='sudo killall coreaudiod'
 
-# NVM Exports
-# -----------
-export NVM_DIR=~/.nvm
 export EDITOR='nvim'
 
 # Source Files
@@ -81,18 +78,7 @@ function notes() {
 }
 
 function projects() {
-  decrypt nvim
-}
-
-function decrypt() {
-  res=$(hdiutil attach /Users/codycallahan/Projects.dmg)
-  pushd /Volumes/Projects > /dev/null
-  $@
-  popd > /dev/null
-  # Get the disk number /dev/diskN from the attach output
-  disk=$(echo $res | grep "GUID_partition_scheme" | sed 's/.*\(disk.\).*/\1/')
-  echo "Detaching /dev/$disk..."
-  hdiutil detach "/dev/$disk"
+  cd /Volumes/Projects/
 }
 
 # ===============================================================================================
@@ -142,6 +128,7 @@ export RUST_SRC_PATH=/Users/codycallahan/.multirust/toolchains/stable-x86_64-app
 # ---
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
@@ -165,3 +152,7 @@ export PATH="$HOME/.rvm/bin:$PATH"
 # Python2 Homebrew
 export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+# [ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
