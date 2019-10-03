@@ -11,7 +11,7 @@ gitconfig
 reports/config/*
 !reports/config/*.sample.*
 
-config.yml
+/config.yml
 nodes
 
 cache
