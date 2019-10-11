@@ -81,13 +81,16 @@
     # mod + return : open new terminal
 
     # mod + j : focus left
-    cmd - j : chunkc tiling::window -f west
+    cmd - j : yabai -m window --focus west
 
     # mod + k : focus ~down~ right
-    cmd - k : chunkc tiling::window -f east
+    cmd - k : yabai -m window --focus east
 
     # mod + l : focus up
-    lcmd - l : chunkc tiling::window -f north
+    lcmd - l : yabai -m window --focus north
+
+    # mod + ; : focus ~right~ down
+    cmd - 0x29 : yabai -m window --focus north # Semicolon
 
     # ctrl - l -> : khd -p "cmd - l" # Because the above overrides cmd-l for browsers
     ctrl - l [
@@ -102,33 +105,30 @@
       "Sblack"        : khd -p "cmd - t"
     ]
 
-    # mod + ; : focus ~right~ down
-    cmd - 0x29 : chunkc tiling::window -f south # Semicolon
-
     # mod + space : toggle focus mode
     # mod + t : toggle layout
-    lcmd - t : chunkc tiling::desktop --rotate 90
+    lcmd - t : yabai -m space --rotate 90
 
     # ---------------------------------------------------------------
     # Moving Windows
     # ---------------------------------------------------------------
     # mod + shift + j : move window left
-    cmd + shift - j : chunkc tiling::window --warp west
+    cmd + shift - j : yabai -m window --warp west
 
     # mod + shift + k : move window down
-    cmd + shift - k : chunkc tiling::window --warp east # I prefer right
+    cmd + shift - k : yabai -m window --warp east
 
     # mod + shift + l : move window up
-    cmd + shift - l : chunkc tiling::window --warp south
+    cmd + shift - l : yabai -m window --warp south
 
     # mod + shift + ; : move window right
-    cmd + shift - 0x29 : chunkc tiling::window --warp north # Semicolon
+    cmd + shift - 0x29 : yabai -m window --warp north # Semicolon
 
     # ---------------------------------------------------------------
     # Modifying Windows
     # ---------------------------------------------------------------
     # mod + f : toggle fullscreen
-    cmd - f : chunkc tiling::window --toggle fullscreen
+    cmd - f : yabai -m window --toggle zoom-fullscreen
     alt - f -> : khd -k "cmd - f"
 
     # mod + v : Split window vertically
@@ -164,10 +164,12 @@
     # ---------------------------------------------------------------
 
     # mod + e : default
-    cmd - e : chunkc tiling::desktop --layout bsp
+    # cmd - e : chunkc tiling::desktop --layout bsp
+    cmd - e : yabai -m space --layout bsp
 
     # mod + s : stacking
-    lcmd - s : chunkc tiling::desktop --layout monocle
+    # lcmd - s : chunkc tiling::desktop --layout monocle
+    # lcmd - s : yabai -m space --layout monocle
     #alt - s -> : khd -p "cmd - s"
 
     # ---------------------------------------------------------------
@@ -182,16 +184,16 @@
     # ---------------------------------------------------------------
     # mod + 0-9 : switch workspaces # Already configured using macOs System
     # mod + shift + 0-9 : move window to another workspace
-    cmd + shift - 1 : chunkc tiling::window --send-to-desktop 1
-    cmd + shift - 2 : chunkc tiling::window --send-to-desktop 2
-    cmd + shift - 3 : chunkc tiling::window --send-to-desktop 3
-    cmd + shift - 4 : chunkc tiling::window --send-to-desktop 4
-    cmd + shift - 5 : chunkc tiling::window --send-to-desktop 5
-    cmd + shift - 6 : chunkc tiling::window --send-to-desktop 6
-    cmd + shift - 7 : chunkc tiling::window --send-to-desktop 7
-    cmd + shift - 8 : chunkc tiling::window --send-to-desktop 8
-    cmd + shift - 9 : chunkc tiling::window --send-to-desktop 9
-    cmd + shift - 0 : chunkc tiling::window --send-to-desktop 10
+    cmd + shift - 1 : yabai -m window --space  1
+    cmd + shift - 2 : yabai -m window --space  2
+    cmd + shift - 3 : yabai -m window --space  3
+    cmd + shift - 4 : yabai -m window --space  4
+    cmd + shift - 5 : yabai -m window --space  5
+    cmd + shift - 6 : yabai -m window --space  6
+    cmd + shift - 7 : yabai -m window --space  7
+    cmd + shift - 8 : yabai -m window --space  8
+    cmd + shift - 9 : yabai -m window --space  9
+    cmd + shift - 0 : yabai -m window --space  10
 
     # ---------------------------------------------------------------
     # Opening Applications / Closing Windows
@@ -206,8 +208,24 @@
     # mod + shift + c : Reload the config file
     # mod + shift + r : Restart i3 in place
     # Reload chunkwm - skhd hot reloads so no need there
-    cmd + shift - r : sh ~/.chunkwmrc
+    # cmd + shift - r : sh ~/.chunkwmrc
+    cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
     # mod + shift + e : exit i3
 
     cmd + ctrl - b : sh /Users/cody/.zsh/bin/newbg
+
+    # ---------------------------------------------------------------
+    # Focus desktops
+    # ---------------------------------------------------------------
+
+    cmd - 1 : yabai -m space --focus 1
+    cmd - 2 : yabai -m space --focus 2
+    cmd - 3 : yabai -m space --focus 3
+    cmd - 4 : yabai -m space --focus 4
+    cmd - 5 : yabai -m space --focus 5
+    cmd - 6 : yabai -m space --focus 6
+    cmd - 7 : yabai -m space --focus 7
+    cmd - 8 : yabai -m space --focus 8
+    cmd - 9 : yabai -m space --focus 9
+    cmd - 0 : yabai -m space --focus 10
