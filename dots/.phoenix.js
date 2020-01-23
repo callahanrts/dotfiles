@@ -1,37 +1,24 @@
-Phoenix.log('--');
-Phoenix.log(
-  Space.active()
-    .windows()
-    .map(w => w.title()),
-);
-Phoenix.log(Space.windows);
+// log stream --process Phoenix
 
-Key.on('j', ['cmd'], function() {
-  var windows = Space.active()
-    .windows()
-    .filter(w => w.title());
-  var index = 0;
-  var cur = Window.focused().title();
+function log(...data) {
+  Phoenix.log(...data);
+}
 
-  for (var w = 0; w < windows.length; w++) {
-    if (cur == windows[w].title()) index = w;
+function profile(method) {
+  t1 = new Date().getTime();
+  method();
+  log(new Date().getTime() - t1);
+}
+
+function changeFocus(dir) {
+  const focused = Window.focused();
+  if (focused) {
+    const neighbors = focused.neighbors(dir).filter(n => n.title());
+    neighbors.length > 0 ? neighbors[0].focus() : log(`no neighbors ${dir}`);
+  } else {
+    log('No focused window');
   }
+}
 
-  index -= 1;
-  index = index === -1 ? windows.length - 1 : index;
-  windows[index].focus();
-});
-
-Key.on('k', ['cmd'], function() {
-  var windows = Space.active()
-    .windows()
-    .filter(w => w.title());
-  var index = 0;
-  var cur = Window.focused().title();
-
-  for (var w = 0; w < windows.length; w++) {
-    if (cur == windows[w].title()) index = w;
-  }
-
-  windows[(index + 1) % windows.length].focus();
-});
+Key.on('j', ['cmd'], changeFocus.bind(this, 'west'));
+Key.on('k', ['cmd'], changeFocus.bind(this, 'east'));
