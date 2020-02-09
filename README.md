@@ -10,8 +10,7 @@ Commands:
   dry      # Print the actions that would take place
   install  # Run an installer script
   restore  # Symlink dotfiles
-
-  help      Show this menu
+  help     # Show this menu
 ```
 
 ## Install `dot` globally
