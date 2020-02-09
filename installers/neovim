@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Installing NeoVim"
+
+brew install neovim
+mkdir -p $HOME/.config
+git clone git@github.com:callahanrts/vim-config $HOME/.config/nvim
+
+if [ ! -f $HOME/.config/nvim/init.vim ]; then
+  cp $HOME/.config/nvim/init.sample.vim $HOME/.config/nvim/init.vim
+fi

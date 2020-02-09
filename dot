@@ -1,0 +1,72 @@
+#!/bin/bash
+
+DOT_PATH="$(pwd)"
+DOT_HOME="$(pwd)/home"
+DRY="false"
+
+dt::restore() {
+  if [ -z $1 ]; then
+    echo "No filename provided"
+    return
+  fi
+
+  if [ $DRY == "false" ]; then
+    ln -sf $DOT_HOME/$1 $HOME/$1
+    echo "Linked $DOT_HOME/$1 to $HOME/$1"
+  else
+    echo "Would link $DOT_HOME/$1 to $HOME/$1"
+  fi
+}
+
+dt::install() {
+  if [ -z $1 ]; then
+    echo "No installer provided"
+    return
+  fi
+
+  if [ $DRY == "false" ]; then
+    if [ -f $DOT_PATH/installers/$1 ]; then
+      sh $DOT_PATH/installers/$1 ${@:2}
+      echo "Ran sh $DOT_PATH/installers/$1 ${@:2}"
+    else
+      echo "Installer not found $DOT_PATH/installers/$1"
+    fi
+  else
+    echo "Would run sh $DOT_PATH/installers/$1 ${@:2}"
+  fi
+}
+
+dt::dry() {
+  DRY="true"
+  dt::main "$@"
+}
+
+dt::help() {
+  echo "
+  Manage programs and dotfiles
+
+  Usage:
+    dot [COMMAND] [args]
+
+  Commands:
+    dry      # Print the actions that would take place
+    install  # Run an installer script
+    restore  # Symlink dotfiles
+
+    help      Show this menu
+  "
+}
+
+dt::main() {
+  case $1 in
+    dry)     dt::dry ${@:2} ;;
+    install) dt::install ${@:2} ;;
+    restore) dt::restore ${@:2} ;;
+    *)       dt::help ;;
+  esac
+}
+
+dt::main "$@"
+
+unset -f dt::main dt::help dt::dry
+unset -f dt::restore dt::install

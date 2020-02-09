@@ -1,0 +1,12 @@
+#!/bin/bash
+
+brew install \
+  caddy \
+  exa \
+  fzf \
+  gnupg \
+  heroku \
+  python \
+  ripgrep \
+  khd \
+  skhd

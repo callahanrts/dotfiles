@@ -1,10 +1,24 @@
-
 # Dotfiles
 
-## Dependencies
-TODO: Create a script to install homebrew and packages
+```bash
+Manage programs and dotfiles
 
-Install Chef
+Usage:
+  dot [COMMAND] [args]
+
+Commands:
+  dry      # Print the actions that would take place
+  install  # Run an installer script
+  restore  # Symlink dotfiles
+
+  help      Show this menu
 ```
-brew cask install chef-dk
+
+## Install `dot` globally
+
+Add this dotfiles directory to your path. ex:
+
+```bash
+export PATH=$PATH:$HOME/dotfiles
 ```
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Installing tmux"
+
+brew install tmux
+
+git clone https://github.com/gpakosz/.tmux /tmp/.tmux
+cp -f /tmp/.tmux/.tmux.conf $HOME/.tmux.conf
+cp -f $HOME/dotfiles/home/.tmux.conf.local $HOME/.tmux.conf.local

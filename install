@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# chef-client --local-mode --override-runlist dotfiles
-ruby gen_solo.rb $@
-chef-solo -c solo.rb -j solo.json
