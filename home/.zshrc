@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME=""
+# ZSH_THEME=""
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -14,9 +14,9 @@ ZSH_THEME=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting fzf)
+# plugins=(git zsh-syntax-highlighting fzf)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 autoload -U promptinit; promptinit
 prompt pure
 export PURE_PROMPT_SYMBOL=" ❯"
@@ -32,7 +32,6 @@ prompt pure
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 alias vim='nvim'
-alias clock='tty-clock -cbtC4'
 alias ta='tmux attach -t'
 alias tn='tmux new-session -s'
 alias tk='tmux kill-session -t'
@@ -41,7 +40,6 @@ alias dc="docker-compose"
 alias ag='ag --path-to-ignore ~/.ignore'
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
-alias gitlab-runner="gitlab-ci-multi-runner"
 alias fix-audio='sudo killall coreaudiod'
 
 export EDITOR='nvim'
@@ -67,22 +65,6 @@ function uberrestart() {
   open -a $(ls /Applications | grep bersicht)
 }
 
-function go-home() {
-  tk work
-  docker-restart
-}
-
-function notes() {
-  pushd /Volumes/Projects/devlog > /dev/null
-  git pull origin master
-  ./editnewjournalfile.sh $1 $2
-  popd > /dev/null
-}
-
-function projects() {
-  cd /Volumes/Projects/
-}
-
 # ===============================================================================================
 # FZF
 # ===============================================================================================
@@ -93,26 +75,15 @@ if [[ ! "$PATH" == */Users/codycallahan/.fzf/bin* ]]; then
   export PATH="$PATH:/Users/codycallahan/.fzf/bin"
 fi
 
-## Man path
-## --------
-#if [[ ! "$MANPATH" == */Users/codycallahan/.fzf/man* && -d "/Users/codycallahan/.fzf/man" ]]; then
-#  export MANPATH="$MANPATH:/Users/codycallahan/.fzf/man"
-#fi
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/Users/codycallahan/.fzf/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-# ------------
-# source "/Users/codycallahan/.fzf/shell/key-bindings.zsh"
-
-# fzf Completion
-export FZF_COMPLETION_TRIGGER='**'
-bindkey '^T' fzf-completion
-bindkey '^I' $fzf_default_completion
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 
 # ===============================================================================================
@@ -121,10 +92,6 @@ bindkey '^I' $fzf_default_completion
 
 # PG
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
-
-# Rust Path
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH=/Users/codycallahan/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
 # NVM
 # ---
@@ -135,26 +102,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
 
-# --files: List files that would be searched but do not search
-# --no-ignore: Do not respect .gitignore, etc...
-# --hidden: Search hidden files and folders
-# --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-
 export PATH="$PATH:$HOME/.zsh/bin"
-
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH="$PATH:$HOME/.emacs.d/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/.rvm/bin:$PATH"
 
 # Python2 Homebrew
 export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
-# PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
-# [ -s ${HOME}/.rvm/scripts/rvm ] && source ${HOME}/.rvm/scripts/rvm
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH=$PATH:$HOME/dotfiles
