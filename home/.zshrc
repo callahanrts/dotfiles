@@ -40,7 +40,13 @@ alias dc="docker-compose"
 alias ag='ag --path-to-ignore ~/.ignore'
 # alias dcdev="docker-compose -f docker-compose.dev.yml"
 alias ls='exa'
+alias l='ls -al'
 alias fix-audio='sudo killall coreaudiod'
+alias uncommit='git reset --soft HEAD\^'
+alias temacs='emacs -nw'
+alias kitty='/Applications/kitty.app/Contents/MacOS/kitty'
+# kitty -o allow_remote_control=yes --listen-on unix:/tmp/mykitty
+alias caddys='caddy start --config="/Users/cody/github.com/Caddyfile"'
 
 export EDITOR='nvim'
 
@@ -53,7 +59,7 @@ export EDITOR='nvim'
 # ===============================================================================================
 
 function work(){
-  tmuxinator work || ta work
+  tmuxinator scs || ta scs
 }
 
 function notify() {
@@ -64,6 +70,58 @@ function uberrestart() {
   kill -9 $(pgrep bersicht)
   open -a $(ls /Applications | grep bersicht)
 }
+
+function piano() {
+  cd ~/github.com/callahanrts/learn-piano/
+}
+
+function blog() {
+  cd ~/github.com/callahanrts/callahanrts.github.io/
+}
+
+function caddy_start() {
+  caddy start --config ~/github.com/Caddyfile
+}
+
+function ss() {
+  local dir=$1
+
+  if [ ! -z $dir ]; then
+    case $dir in
+      mysql) dir=dockermysql ;;
+      elastic) dir=dockerelasticsearch ;;
+      asterisk) dir=asterisk ;;
+      app2) dir=shortstack2 ;;
+      2) dir=shortstack2 ;;
+      app) dir=shortstack ;;
+      *) dir=shortstack$dir ;;
+    esac
+  fi
+
+  cd ~/github.com/pancakelabs/$dir
+}
+
+function scs() {
+  cd ~/github.com/sendcutsend/$1
+}
+
+function rts() {
+  cd ~/github.com/callahanrts/$1
+}
+
+function ktheme() {
+  local kitty=/Applications/kitty.app/Contents/MacOS/kitty
+
+  case $1 in
+    light)
+      $kitty @ set-colors -a -c $HOME/.config/kitty/onelight.conf
+      ;;
+    dark)
+      $kitty @ set-colors -a -c $HOME/.config/kitty/onedark.conf
+      ;;
+  esac
+}
+
 
 # ===============================================================================================
 # FZF
@@ -104,6 +162,7 @@ export PATH="/usr/local/sbin:$PATH"
 
 export PATH="$PATH:$HOME/.zsh/bin"
 export GOPATH=$HOME/go
+export GOBIN=$HOME/go/bin
 export PATH=$PATH:$GOPATH/bin
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -117,3 +176,14 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH=$PATH:$HOME/dotfiles
+export PATH=$PATH:$HOME/github.com/SendCutSend/dev/bin
+
+export PATH=$PATH:/Applications/QCAD-Pro.app/Contents/Resources
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /Users/cody/github.com/learn-piano/workstation/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/cody/github.com/learn-piano/workstation/node_modules/tabtab/.completions/electron-forge.zsh
+
+export PATH=$PATH:/Users/cody/.emacs.d/bin
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/cody/go/bin/bitcomplete bit
