@@ -1,0 +1,97 @@
+SplineFontDB: 3.2
+FontName: Untitled7
+FullName: Untitled7
+FamilyName: Untitled7
+Weight: Regular
+Copyright: Copyright (c) 2020, Cody Callahan
+UComments: "2020-12-26: Created with FontForge (http://fontforge.org)"
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+InvalidEm: 0
+LayerCount: 2
+Layer: 0 0 "Back" 1
+Layer: 1 0 "Fore" 0
+XUID: [1021 108 -1859126814 11666022]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1609003682
+ModificationTime: 1609003693
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+DEI: 91125
+Encoding: ISO8859-1
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 96 12 4
+BeginChars: 256 3
+
+StartChar: uni0080
+Encoding: 128 128 0
+Width: 616
+VWidth: 1024
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+-3 1002 m 1
+ 40 1002 40 1002 167 1002 c 1
+ 167 680 167 680 167 -289 c 1
+ 124 -289 124 -289 -3 -289 c 1
+ -3 -66 -3 -66 -3 601 c 0
+ -3 702 -3 702 -3 1002 c 1
+EndSplineSet
+EndChar
+
+StartChar: uni0081
+Encoding: 129 129 1
+Width: 616
+VWidth: 1024
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+501 -275 m 1
+ 463 -238.333333333 387 -164.333333333 273 -53 c 0
+ 230.333333333 -11 144.666666667 74 16 202 c 1
+ 16 122 16.3333333333 -37.3333333333 17 -276 c 1
+ 97.6666666667 -276 259 -275.666666667 501 -275 c 1
+EndSplineSet
+EndChar
+
+StartChar: uni0082
+Encoding: 130 130 2
+Width: 616
+VWidth: 1024
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+23 944 m 1
+ 113 943.333333333 294 942 566 940 c 1
+ 519.333333333 894.666666667 425.666666667 803.333333333 285 666 c 0
+ 240.333333333 621.333333333 151.666666667 531.333333333 19 396 c 1
+ 20 533 20 533 23 944 c 1
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont
